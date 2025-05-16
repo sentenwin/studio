@@ -1,6 +1,8 @@
+
 import type { FC } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { JoinCommunityDialog } from './join-community-dialog';
 
 const CTABanner: FC = () => {
   return (
@@ -23,14 +25,7 @@ const CTABanner: FC = () => {
                 Explore Projects
               </Button>
             </Link>
-            <Link href="/community" passHref> {/* Placeholder link, adjust as needed */}
-              <Button 
-                size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
-              >
-                Join the Community
-              </Button>
-            </Link>
+            <JoinCommunityDialog />
           </div>
         </div>
       </div>
