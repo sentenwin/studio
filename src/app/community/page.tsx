@@ -34,6 +34,13 @@ const allCommunitiesData: Community[] = [
     joinLink: 'https://gdg.community.dev/gdg-madurai/',
   },
   {
+    id: 'digitall-madurai',
+    name: 'Digitall Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=DM',
+    description: 'Focuses on digital transformation, marketing, and technology trends. Events and networking opportunities.',
+    joinLink: 'https://www.linkedin.com/company/digitallmadurai/',
+  },
+  {
     id: 'gdg-cloud-madurai',
     name: 'Google Developer Group Cloud Madurai',
     logoUrl: 'https://placehold.co/100x100.png?text=GDGC',
@@ -53,13 +60,6 @@ const allCommunitiesData: Community[] = [
     logoUrl: 'https://placehold.co/100x100.png?text=Azure',
     description: "Community focused on Microsoft Azure technologies in Madurai. Connects local professionals interested in Microsoft's cloud platform. Find specific Madurai details via the directory.",
     joinLink: 'https://azdev.reskilll.com/findcommunity',
-  },
-  {
-    id: 'digitall-madurai',
-    name: 'Digitall Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=DM',
-    description: 'Focuses on digital transformation, marketing, and technology trends. Events and networking opportunities.',
-    joinLink: 'https://www.linkedin.com/company/digitallmadurai/',
   },
   {
     id: 'sida',
