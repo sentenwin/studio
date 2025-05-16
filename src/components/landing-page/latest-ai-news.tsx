@@ -60,9 +60,9 @@ const getPlaceholderNews = (): NewsItem[] => [
 ];
 
 async function fetchNews(): Promise<NewsItem[]> {
-  console.warn(
-    "LatestAiNews: Using placeholder data. To fetch live news, install 'rss-parser' and uncomment the fetching logic."
-  );
+  // console.warn(
+  //   "LatestAiNews: Using placeholder data. To fetch live news, install 'rss-parser' and uncomment the fetching logic."
+  // );
   return getPlaceholderNews(); // Using placeholder data by default
 
   /*
@@ -121,7 +121,7 @@ const LatestAiNews: FC = async () => {
         {newsItems.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {newsItems.map((item, index) => (
-              <NewsCard key={item.link || index} item={item} />
+              <NewsCard key={item.link && item.link !== "#" ? item.link : `news-item-${index}`} item={item} />
             ))}
           </div>
         ) : (
