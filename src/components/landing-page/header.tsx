@@ -12,9 +12,9 @@ import React from 'react';
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
-  { href: '#featured-projects', label: 'Featured Projects' }, 
+  { href: '#ai-news', label: 'News' }, // Changed from Featured Projects to News
   { href: '/projects', label: 'All Projects' },
-  { href: '/community', label: 'Community' },
+  // { href: '/community', label: 'Community' }, // Removed Community link
   { href: '#join-us', label: 'Join Us' },
 ];
 

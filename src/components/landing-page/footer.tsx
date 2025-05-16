@@ -23,7 +23,7 @@ const Footer: FC = () => {
               <li><Link href="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
               <li><Link href="/#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
               <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Explore Projects</Link></li>
-              <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li>
+              {/* <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li> */} {/* Removed Community link */}
             </ul>
           </div>
           <div>
