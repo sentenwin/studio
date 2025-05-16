@@ -66,14 +66,14 @@ const allCommunitiesData: Community[] = [
     name: 'Madurai Tech Community',
     logoUrl: 'https://placehold.co/100x100.png?text=MTC',
     description: 'Focus: Knowledge sharing, startup events, hackathons, mentorship, and job fairs.',
-    joinLink: 'https://madurai-tech.org', // Assuming this is the primary link. LinkedIn: Madurai Tech Community
+    joinLink: 'https://madurai-tech.org',
   },
   {
     id: 'aws-user-group-madurai',
     name: 'AWS User Group Madurai',
     logoUrl: 'https://placehold.co/100x100.png?text=AWS',
     description: 'Focus: Amazon Web Services (AWS), cloud computing, and related technologies.',
-    joinLink: 'https://www.meetup.com/aws-user-group-madurai/', // Assuming the meetup page is the join link
+    joinLink: 'https://www.meetup.com/aws-user-group-madurai/',
   },
   {
     id: 'cloud-native-madurai',
@@ -87,7 +87,7 @@ const allCommunitiesData: Community[] = [
     name: 'Madurai WordPress Meetup Group',
     logoUrl: 'https://placehold.co/100x100.png?text=WP',
     description: 'Focus: WordPress development, design, and publishing.',
-    joinLink: 'https://www.meetup.com/Madurai-WordPress-Meetup-Group/', // Assuming the meetup page is the join link
+    joinLink: 'https://www.meetup.com/Madurai-WordPress-Meetup-Group/',
   },
   {
     id: 'makersmadurai',
@@ -101,83 +101,13 @@ const allCommunitiesData: Community[] = [
     name: 'MaduraiStartups',
     logoUrl: 'https://placehold.co/100x100.png?text=MS',
     description: 'Focus: Entrepreneurship, startups, business networking, and technology for business.',
-    joinLink: 'https://www.meetup.com/MaduraiStartups/', // Assuming the meetup page is the join link
+    joinLink: 'https://www.meetup.com/MaduraiStartups/',
   },
   {
     id: 'cybersec-madurai',
     name: 'Cybersecurity Group Madurai',
     logoUrl: 'https://placehold.co/100x100.png?text=Cyber',
     description: 'Learn about cybersecurity, ethical hacking, and data privacy. Stay updated on security threats.',
-    joinLink: '#',
-  },
-  {
-    id: 'startup-madurai', // Note: already have MaduraiStartups, this might be duplicative or different
-    name: 'Startup Madurai Network',
-    logoUrl: 'https://placehold.co/100x100.png?text=Startup',
-    description: 'Connecting entrepreneurs, mentors, and investors in Madurai. Pitch events and startup support.',
-    joinLink: '#',
-  },
-  {
-    id: 'data-science-madurai',
-    name: 'Data Science Madurai Hub',
-    logoUrl: 'https://placehold.co/100x100.png?text=Data',
-    description: 'A hub for data scientists and analysts to learn, share, and work on data-driven projects.',
-    joinLink: '#',
-  },
-  {
-    id: 'blockchain-madurai',
-    name: 'Blockchain Developers Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Chain',
-    description: 'Exploring blockchain technology, cryptocurrencies, and decentralized applications (dApps).',
-    joinLink: '#',
-  },
-  {
-    id: 'game-dev-madurai',
-    name: 'Game Developers Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Game',
-    description: 'For aspiring and professional game developers. Discuss game engines, design, and art.',
-    joinLink: '#',
-  },
-  {
-    id: 'iot-madurai',
-    name: 'IoT Innovators Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=IoT',
-    description: 'Working on Internet of Things projects, hardware, and software. Smart city solutions.',
-    joinLink: '#',
-  },
-  {
-    id: 'madurai-women-tech',
-    name: 'Madurai Women in Technology',
-    logoUrl: 'https://placehold.co/100x100.png?text=WIT',
-    description: 'Empowering and supporting women in the tech industry through mentorship and networking.',
-    joinLink: '#',
-  },
-  {
-    id: 'open-source-madurai',
-    name: 'Open Source Contributors Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=OS',
-    description: 'Promoting open-source software development and contributions in the local community.',
-    joinLink: '#',
-  },
-  {
-    id: 'devops-madurai',
-    name: 'DevOps Madurai Circle',
-    logoUrl: 'https://placehold.co/100x100.png?text=DevOps',
-    description: 'Sharing best practices in DevOps, CI/CD, automation, and infrastructure as code.',
-    joinLink: '#',
-  },
-  {
-    id: 'ar-vr-madurai',
-    name: 'AR/VR Creators Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=AR/VR',
-    description: 'Community for developers and artists working with Augmented Reality and Virtual Reality.',
-    joinLink: '#',
-  },
-  {
-    id: 'madurai-tech-talks',
-    name: 'Madurai Tech Talks',
-    logoUrl: 'https://placehold.co/100x100.png?text=Talks',
-    description: 'A general forum for tech talks on various topics, fostering learning and networking.',
     joinLink: '#',
   },
   {
