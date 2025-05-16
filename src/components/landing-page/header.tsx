@@ -77,14 +77,15 @@ const Header: FC = () => {
           </div>
 
           {/* Center Section: Mobile Logo */}
-          <div className="md:hidden">
+          <div className="md:hidden flex-1 flex justify-center">
             <Logo />
           </div>
+          
 
           {/* Right Section: Desktop Navigation / Mobile Spacer */}
-          <div>
+          <div className="flex items-center"> 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
+            <nav className="hidden md:flex items-center space-x-6 md:ml-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -100,7 +101,7 @@ const Header: FC = () => {
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo) */}
             <div className="md:hidden w-10 h-10"> 
-              {/* This invisible spacer helps justify-between to center the logo */}
+              {/* This invisible spacer helps justify-between to center the logo on mobile by occupying the rightmost cell */}
             </div>
           </div>
         </div>
