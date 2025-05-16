@@ -13,7 +13,8 @@ const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
   { href: '#ai-news', label: 'News' }, 
-  { href: '/community', label: 'Community' }, // Added Community link
+  { href: '/projects', label: 'Projects' }, // Added Projects link
+  { href: '/community', label: 'Community' },
   { href: '#join-us', label: 'Join Us' },
 ];
 
