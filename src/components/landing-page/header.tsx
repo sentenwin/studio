@@ -1,3 +1,4 @@
+
 "use client"; 
 import type { FC } from 'react';
 import Link from 'next/link';
@@ -35,44 +36,65 @@ const Header: FC = () => {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-          <Logo />
-          <nav className="hidden md:flex items-center space-x-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-foreground/80 hover:text-primary transition-colors font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Button>Get Started</Button>
-          </nav>
+          {/* Left Section: Mobile Menu Trigger / Desktop Logo */}
+          <div className="flex items-center">
+            {/* Mobile Menu Button */}
+            <div className="md:hidden">
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <Button variant="ghost" size="icon">
+                    <Menu className="h-6 w-6" />
+                    <span className="sr-only">Open menu</span>
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[280px] bg-background p-6">
+                  <Logo className="mb-8" />
+                  <nav className="flex flex-col space-y-4">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                    <Button className="w-full mt-4">Get Started</Button>
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
+            {/* Desktop Logo */}
+            <div className="hidden md:block">
+              <Logo />
+            </div>
+          </div>
+
+          {/* Center Section: Mobile Logo */}
           <div className="md:hidden">
-            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[280px] bg-background p-6">
-                <Logo className="mb-8" />
-                <nav className="flex flex-col space-y-4">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                  <Button className="w-full mt-4">Get Started</Button>
-                </nav>
-              </SheetContent>
-            </Sheet>
+            <Logo />
+          </div>
+
+          {/* Right Section: Desktop Navigation / Mobile Spacer */}
+          <div>
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex items-center space-x-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Button>Get Started</Button>
+            </nav>
+            {/* Mobile Spacer (to balance the menu button and center the logo) */}
+            <div className="md:hidden w-10 h-10"> 
+              {/* This invisible spacer helps justify-between to center the logo */}
+            </div>
           </div>
         </div>
       </div>
