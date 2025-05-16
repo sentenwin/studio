@@ -52,8 +52,8 @@ const Header: FC = () => {
                   <SheetHeader className="mb-4 border-b pb-4">
                     <SheetTitle>OpenMaduraAI</SheetTitle>
                   </SheetHeader>
-                  <Logo className="mt-4 mb-8" />
-                  <nav className="flex flex-col space-y-4">
+                  
+                  <nav className="flex flex-col space-y-4 mt-4">
                     {navLinks.map((link) => (
                       <Link
                         key={link.href}
