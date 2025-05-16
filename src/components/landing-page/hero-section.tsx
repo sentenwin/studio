@@ -13,9 +13,7 @@ const HeroSection: FC = () => {
               Empowering Local Innovation Through {' '}
               <span className="text-accent">Collaboration</span>
             </h1>
-            <p className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0">
-              Open MaduraAI is an open-source platform dedicated to democratizing AI development, fostering collaboration, and addressing real-world challenges through community-driven solutions. Whether you're a student, researcher, or developer, our platform provides the tools and resources to build, share, and deploy AI models tailored to local needs.
-            </p>
+            
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <Link href="#join-us" passHref>
                 <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
