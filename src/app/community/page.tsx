@@ -104,11 +104,46 @@ const allCommunitiesData: Community[] = [
     joinLink: '#',
   },
   {
+    id: 'madurai-tech-community',
+    name: 'Madurai Tech Community',
+    logoUrl: 'https://placehold.co/100x100.png?text=MTC',
+    description: 'Focus: Knowledge sharing, startup events, hackathons, mentorship, and job fairs.',
+    joinLink: 'https://madurai-tech.org', // Assuming this is the primary link. LinkedIn: Madurai Tech Community
+  },
+  {
+    id: 'aws-user-group-madurai',
+    name: 'AWS User Group Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=AWS',
+    description: 'Focus: Amazon Web Services (AWS), cloud computing, and related technologies.',
+    joinLink: 'https://www.meetup.com/aws-user-group-madurai/', // Assuming the meetup page is the join link
+  },
+  {
     id: 'cloud-native-madurai',
-    name: 'Cloud Native Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Cloud',
-    description: 'Discuss cloud computing, Kubernetes, Docker, and serverless technologies. DevOps practices.',
-    joinLink: '#',
+    name: 'Cloud Native Madurai (CNCF Chapter)',
+    logoUrl: 'https://placehold.co/100x100.png?text=CNCF',
+    description: 'Focus: Cloud-native computing, Kubernetes, and CNCF projects. Example: Cloud Native Madurai Meetup.',
+    joinLink: 'https://community.cncf.io/madurai/',
+  },
+  {
+    id: 'madurai-wordpress-meetup',
+    name: 'Madurai WordPress Meetup Group',
+    logoUrl: 'https://placehold.co/100x100.png?text=WP',
+    description: 'Focus: WordPress development, design, and publishing.',
+    joinLink: 'https://www.meetup.com/Madurai-WordPress-Meetup-Group/', // Assuming the meetup page is the join link
+  },
+  {
+    id: 'makersmadurai',
+    name: 'MakersMadurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=MM',
+    description: 'Focus: Makerspace, Fablab, Hackerspace, and tech innovation.',
+    joinLink: 'https://makersmadurai.org/',
+  },
+  {
+    id: 'maduraistartups',
+    name: 'MaduraiStartups',
+    logoUrl: 'https://placehold.co/100x100.png?text=MS',
+    description: 'Focus: Entrepreneurship, startups, business networking, and technology for business.',
+    joinLink: 'https://www.meetup.com/MaduraiStartups/', // Assuming the meetup page is the join link
   },
   {
     id: 'cybersec-madurai',
@@ -118,7 +153,7 @@ const allCommunitiesData: Community[] = [
     joinLink: '#',
   },
   {
-    id: 'startup-madurai',
+    id: 'startup-madurai', // Note: already have MaduraiStartups, this might be duplicative or different
     name: 'Startup Madurai Network',
     logoUrl: 'https://placehold.co/100x100.png?text=Startup',
     description: 'Connecting entrepreneurs, mentors, and investors in Madurai. Pitch events and startup support.',
