@@ -55,13 +55,6 @@ const allCommunitiesData: Community[] = [
     joinLink: 'https://community.zoho.com/user-groups/madurai.html',
   },
   {
-    id: 'azure-dev-madurai',
-    name: 'Azure Developer Community Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Azure',
-    description: "Community focused on Microsoft Azure technologies in Madurai. Connects local professionals interested in Microsoft's cloud platform. Find specific Madurai details via the directory.",
-    joinLink: 'https://azdev.reskilll.com/findcommunity',
-  },
-  {
     id: 'sida',
     name: 'SIDA (Software Industries Development Association)',
     logoUrl: 'https://placehold.co/100x100.png?text=SIDA',
@@ -186,6 +179,13 @@ const allCommunitiesData: Community[] = [
     logoUrl: 'https://placehold.co/100x100.png?text=Talks',
     description: 'A general forum for tech talks on various topics, fostering learning and networking.',
     joinLink: '#',
+  },
+  {
+    id: 'azure-dev-madurai',
+    name: 'Azure Developer Community Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=Azure',
+    description: "Community focused on Microsoft Azure technologies in Madurai. Connects local professionals interested in Microsoft's cloud platform. Find specific Madurai details via the directory.",
+    joinLink: 'https://azdev.reskilll.com/findcommunity',
   },
 ];
 
