@@ -23,13 +23,36 @@ interface Community {
   joinLink: string;
 }
 
+// TODO: This data should ideally be fetched dynamically from a Firebase collection named "developer_communities".
+// The following is placeholder data based on provided text and existing examples.
 const allCommunitiesData: Community[] = [
   {
     id: 'gdg-madurai',
     name: 'Google Developer Group Madurai',
     logoUrl: 'https://placehold.co/100x100.png?text=GDG',
-    description: 'A community for developers interested in Google technologies. Regular meetups, workshops, and tech talks.',
+    description: 'Official Google chapter in Madurai fostering tech learning for students, professionals, and entrepreneurs. Organizes tech talks, workshops, hackathons, and has hosted events like Devfest Madurai.',
     joinLink: 'https://gdg.community.dev/gdg-madurai/',
+  },
+  {
+    id: 'gdg-cloud-madurai',
+    name: 'Google Developer Group Cloud Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=GDGC',
+    description: 'Independent Google chapter focused on Google Cloud technologies. Connects developers, sysadmins, data scientists, and leaders. Past events include Cloud & AI talks and Google Cloud Community Day.',
+    joinLink: 'https://gdg.community.dev/gdg-cloud-madurai/',
+  },
+  {
+    id: 'zoho-madurai-zug',
+    name: 'Zoho User Group Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=Zoho',
+    description: "Local Zoho User Group for users, developers, and partners to network and share insights on Zoho's ecosystem. Past events include Zobot Bootcamps and product-specific meetups.",
+    joinLink: 'https://community.zoho.com/user-groups/madurai.html',
+  },
+  {
+    id: 'azure-dev-madurai',
+    name: 'Azure Developer Community Madurai',
+    logoUrl: 'https://placehold.co/100x100.png?text=Azure',
+    description: "Community focused on Microsoft Azure technologies in Madurai. Connects local professionals interested in Microsoft's cloud platform. Find specific Madurai details via the directory.",
+    joinLink: 'https://azdev.reskilll.com/findcommunity',
   },
   {
     id: 'digitall-madurai',
@@ -94,7 +117,6 @@ const allCommunitiesData: Community[] = [
     description: 'Learn about cybersecurity, ethical hacking, and data privacy. Stay updated on security threats.',
     joinLink: '#',
   },
-  // Add 10 more for "Show More" functionality
   {
     id: 'startup-madurai',
     name: 'Startup Madurai Network',
