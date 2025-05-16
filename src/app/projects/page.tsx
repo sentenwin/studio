@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 
 // For simplicity, metadata defined statically.
 // export const metadata: Metadata = {
-//   title: 'Explore AI Models - Open MaduraAI',
+//   title: 'Explore Projects - Open MaduraAI',
 //   description: 'Discover innovative AI models from the community and Hugging Face.',
 // };
 
@@ -83,7 +83,7 @@ const ITEMS_PER_PAGE = 10; // Or however many you want per page if pagination is
 
 export default function ProjectsPage() {
   const [displayedModels, setDisplayedModels] = useState<AiModel[]>([]);
-  const [pageTitle, setPageTitle] = useState('Explore AI Models - Open MaduraAI');
+  const [pageTitle, setPageTitle] = useState('Explore Projects - Open MaduraAI');
 
   useEffect(() => {
     document.title = pageTitle;
@@ -100,7 +100,7 @@ export default function ProjectsPage() {
     <div className="min-h-screen bg-background text-foreground">
       <header className="py-4 bg-primary text-primary-foreground shadow-md sticky top-0 z-40">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Explore AI Models</h1>
+          <h1 className="text-2xl font-bold">Explore Projects</h1>
           <Button asChild variant="outline" className="border-accent text-accent hover:bg-accent/10 hover:text-accent">
             <Link href="/">
               <ArrowLeft className="mr-2 h-4 w-4" />
