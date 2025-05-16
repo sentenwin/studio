@@ -3,7 +3,7 @@ import Header from '@/components/landing-page/header';
 import HeroSection from '@/components/landing-page/hero-section';
 import AboutSection from '@/components/landing-page/about-section';
 import FeatureShowcase from '@/components/landing-page/feature-showcase';
-import MissionSection from '@/components/landing-page/testimonials-section'; 
+import MissionSection from '@/components/landing-page/mission-section'; 
 import CTABanner from '@/components/landing-page/cta-banner';
 import Footer from '@/components/landing-page/footer';
 
