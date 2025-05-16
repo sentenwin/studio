@@ -124,12 +124,12 @@ const ITEMS_PER_PAGE = 10;
 export default function CommunityPage() {
   const [displayedCommunities, setDisplayedCommunities] = useState<Community[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [pageTitle, setPageTitle] = useState('Developer Communities - Open MaduraAI'); // Default title
+  // const [pageTitle, setPageTitle] = useState('Developer Communities - Open MaduraAI'); // Default title
 
-  useEffect(() => {
-    // Set document title on client side for SPA-like feel
-    document.title = pageTitle;
-  }, [pageTitle]);
+  // useEffect(() => {
+  //   // Set document title on client side for SPA-like feel
+  //   document.title = pageTitle;
+  // }, [pageTitle]);
 
 
   useEffect(() => {
