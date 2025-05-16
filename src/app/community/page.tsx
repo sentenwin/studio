@@ -69,20 +69,6 @@ const allCommunitiesData: Community[] = [
     joinLink: '#', // Placeholder, actual link needed
   },
   {
-    id: 'ai-ml-madurai',
-    name: 'AI & ML Enthusiasts Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=AI/ML',
-    description: 'Explore the world of Artificial Intelligence and Machine Learning. Workshops and project collaborations.',
-    joinLink: '#',
-  },
-  {
-    id: 'flutter-madurai',
-    name: 'Flutter Developers Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Flutter',
-    description: 'Dedicated to Flutter app development. Share experiences, solve problems, and build amazing apps.',
-    joinLink: '#',
-  },
-  {
     id: 'madurai-tech-community',
     name: 'Madurai Tech Community',
     logoUrl: 'https://placehold.co/100x100.png?text=MTC',
