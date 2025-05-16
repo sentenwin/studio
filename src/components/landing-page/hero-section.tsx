@@ -31,7 +31,7 @@ const HeroSection: FC = () => {
           </div>
           <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105">
             <Image
-              src="https://i.ibb.co/X4qQBPy/temple-ai-art.png"
+              src="https://ibb.co/kV7Tg6R4"
               alt="AI development community with Madurai temple"
               layout="fill"
               objectFit="cover"
