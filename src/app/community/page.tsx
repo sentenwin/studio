@@ -69,31 +69,10 @@ const allCommunitiesData: Community[] = [
     joinLink: '#', // Placeholder, actual link needed
   },
   {
-    id: 'madurai-js',
-    name: 'Madurai JS Developers',
-    logoUrl: 'https://placehold.co/100x100.png?text=JS',
-    description: 'A group for JavaScript enthusiasts and developers. Share knowledge on frameworks, libraries, and best practices.',
-    joinLink: '#',
-  },
-  {
-    id: 'python-madurai',
-    name: 'Python Programmers Madurai',
-    logoUrl: 'https://placehold.co/100x100.png?text=Py',
-    description: 'Connect with Python developers in Madurai. Discuss web development, data science, AI/ML with Python.',
-    joinLink: '#',
-  },
-  {
     id: 'ai-ml-madurai',
     name: 'AI & ML Enthusiasts Madurai',
     logoUrl: 'https://placehold.co/100x100.png?text=AI/ML',
     description: 'Explore the world of Artificial Intelligence and Machine Learning. Workshops and project collaborations.',
-    joinLink: '#',
-  },
-  {
-    id: 'madurai-designers',
-    name: 'Madurai UI/UX Designers',
-    logoUrl: 'https://placehold.co/100x100.png?text=UI/UX',
-    description: 'A community for UI/UX designers to share work, get feedback, and discuss design principles.',
     joinLink: '#',
   },
   {
