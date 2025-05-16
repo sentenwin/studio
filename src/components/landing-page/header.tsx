@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import Link from 'next/link';
 import Logo from './logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import React from 'react';
@@ -48,7 +48,10 @@ const Header: FC = () => {
                   </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[280px] bg-background p-6">
-                  <Logo className="mb-8" />
+                  <SheetHeader className="mb-4 border-b pb-4">
+                    <SheetTitle>Navigation Menu</SheetTitle>
+                  </SheetHeader>
+                  <Logo className="mt-4 mb-8" />
                   <nav className="flex flex-col space-y-4">
                     {navLinks.map((link) => (
                       <Link
@@ -60,7 +63,7 @@ const Header: FC = () => {
                         {link.label}
                       </Link>
                     ))}
-                     <Link href="/get-started" passHref> {/* Placeholder link */}
+                     <Link href="/get-started" passHref>
                         <Button className="w-full mt-4">Get Started</Button>
                     </Link>
                   </nav>
@@ -91,7 +94,7 @@ const Header: FC = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/get-started" passHref> {/* Placeholder link */}
+              <Link href="/get-started" passHref>
                 <Button>Get Started</Button>
               </Link>
             </nav>
