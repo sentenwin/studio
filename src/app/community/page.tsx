@@ -63,7 +63,7 @@ const allCommunitiesData: Community[] = [
   },
   {
     id: 'sida',
-    name: 'SIDA (Small Industries Development Association)',
+    name: 'SIDA (Software Industries Development Association)',
     logoUrl: 'https://placehold.co/100x100.png?text=SIDA',
     description: 'Supports small and medium-sized enterprises with technology adoption and skill development.',
     joinLink: '#', // Placeholder, actual link needed
