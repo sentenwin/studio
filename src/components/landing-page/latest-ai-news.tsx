@@ -1,3 +1,4 @@
+
 // IMPORTANT: This component uses placeholder data for news.
 // To fetch real news:
 // 1. Install 'rss-parser': `npm install rss-parser` or `yarn add rss-parser`
@@ -5,7 +6,7 @@
 // 3. Uncomment the try-catch block within the `fetchNews` function.
 // 4. Replace `RSS_FEED_URL` with your desired RSS feed if different from the example.
 
-import Parser from 'rss-parser'; // Step 2: Uncomment this
+import type Parser from 'rss-parser'; // Step 2: Uncomment this
 import type { FC } from 'react';
 import NewsCard from './news-card';
 
@@ -24,7 +25,7 @@ async function fetchNews(): Promise<NewsItem[]> {
   // Step 3: Uncomment this try-catch block and remove the placeholder return below
   
   try {
-    const parser = new Parser();
+    const parser = new (await import('rss-parser')).default();
     const feed = await parser.parseURL(RSS_FEED_URL);
     return feed.items.slice(0, 5).map(item => ({
       title: item.title || 'No Title Available',
@@ -50,21 +51,6 @@ async function fetchNews(): Promise<NewsItem[]> {
     return getPlaceholderNews();
   }
   
-
-  // Using placeholder data until live fetching is enabled
-   if (process.env.NODE_ENV !== 'production') {
-    console.warn(`
-      **************************************************************************************
-      *** AI NEWS SECTION: Using placeholder data.                                       ***
-      *** To fetch real news:                                                            ***
-      *** 1. Install 'rss-parser': \`npm install rss-parser\` or \`yarn add rss-parser\`   ***
-      *** 2. Uncomment the 'rss-parser' import in this file.                           ***
-      *** 3. Uncomment the try-catch block in the fetchNews() function above.            ***
-      *** 4. Replace RSS_FEED_URL if needed.                                             ***
-      **************************************************************************************
-    `);
-  }
-  return getPlaceholderNews();
 }
 
 function getPlaceholderNews(): NewsItem[] {
