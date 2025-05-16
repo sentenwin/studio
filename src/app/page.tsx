@@ -1,7 +1,8 @@
 import Header from '@/components/landing-page/header';
 import HeroSection from '@/components/landing-page/hero-section';
+import AboutSection from '@/components/landing-page/about-section'; // New import
 import FeatureShowcase from '@/components/landing-page/feature-showcase';
-import MissionSection from '@/components/landing-page/testimonials-section'; // Renamed import, path is the same
+import MissionSection from '@/components/landing-page/testimonials-section'; 
 import CTABanner from '@/components/landing-page/cta-banner';
 import Footer from '@/components/landing-page/footer';
 
@@ -11,6 +12,7 @@ export default function LandingPage() {
       <Header />
       <main className="flex-grow">
         <HeroSection />
+        <AboutSection /> {/* New section added here */}
         <FeatureShowcase />
         <MissionSection />
         <CTABanner />
