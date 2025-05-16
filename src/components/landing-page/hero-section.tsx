@@ -32,7 +32,7 @@ const HeroSection: FC = () => {
           <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105">
             <Image
               src="https://i.ibb.co/X4qQBPy/temple-ai-art.png"
-              alt="Madurai temple scene with people using AI technology and holographic displays"
+              alt="AI development community with Madurai temple"
               layout="fill"
               objectFit="cover"
               data-ai-hint="temple AI"
