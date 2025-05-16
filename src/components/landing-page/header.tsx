@@ -13,6 +13,7 @@ const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
   { href: '#ai-news', label: 'News' }, 
+  { href: '/community', label: 'Community' }, // Added Community link
   { href: '#join-us', label: 'Join Us' },
 ];
 
@@ -64,8 +65,13 @@ const Header: FC = () => {
                         {link.label}
                       </Link>
                     ))}
-                     <Link href="/get-started" passHref>
-                        <Button className="w-full mt-4">Get Started</Button>
+                     <Link href="/#join-us" passHref>
+                        <Button 
+                          className="w-full mt-4"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          Get Started
+                        </Button>
                     </Link>
                   </nav>
                 </SheetContent>
@@ -96,7 +102,7 @@ const Header: FC = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/get-started" passHref>
+              <Link href="/#join-us" passHref>
                 <Button>Get Started</Button>
               </Link>
             </nav>
