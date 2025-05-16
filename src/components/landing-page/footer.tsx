@@ -1,3 +1,4 @@
+
 import type { FC } from 'react';
 import Link from 'next/link';
 import Logo from './logo';
@@ -19,10 +20,10 @@ const Footer: FC = () => {
           <div>
             <h3 className="text-lg font-semibold text-primary mb-3">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
-              <li><Link href="#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
-              <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Explore Projects</Link></li> {/* Placeholder link */}
-              <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li> {/* Placeholder link */}
+              <li><Link href="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
+              <li><Link href="/#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
+              <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Explore Projects</Link></li>
+              <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li>
             </ul>
           </div>
           <div>
