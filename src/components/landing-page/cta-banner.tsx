@@ -14,14 +14,6 @@ const CTABanner: FC = () => {
             Be part of a transformative journey where technology meets community. Contribute, learn, and innovate with Open MaduraAI.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-4">
-            <Link href="/get-started" passHref> {/* Placeholder link, adjust as needed */}
-              <Button 
-                size="lg" 
-                className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
-              >
-                Get Started
-              </Button>
-            </Link>
             <Link href="/projects" passHref> {/* Placeholder link, adjust as needed */}
               <Button 
                 size="lg" 
