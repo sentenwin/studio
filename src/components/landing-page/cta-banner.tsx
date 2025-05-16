@@ -26,8 +26,7 @@ const CTABanner: FC = () => {
             <Link href="/community" passHref> {/* Placeholder link, adjust as needed */}
               <Button 
                 size="lg" 
-                variant="outline"
-                className="border-accent text-accent hover:bg-accent/10 hover:text-accent shadow-lg hover:shadow-xl transform transition-shadow duration-300"
+                className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
               >
                 Join the Community
               </Button>
