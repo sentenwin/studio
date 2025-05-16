@@ -11,8 +11,8 @@ import React from 'react';
 
 const navLinks = [
   { href: '#features', label: 'Features' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#mission', label: 'Our Mission' },
+  { href: '#join-us', label: 'Join Us' },
 ];
 
 const Header: FC = () => {
@@ -60,7 +60,9 @@ const Header: FC = () => {
                         {link.label}
                       </Link>
                     ))}
-                    <Button className="w-full mt-4">Get Started</Button>
+                     <Link href="/get-started" passHref> {/* Placeholder link */}
+                        <Button className="w-full mt-4">Get Started</Button>
+                    </Link>
                   </nav>
                 </SheetContent>
               </Sheet>
@@ -89,7 +91,9 @@ const Header: FC = () => {
                   {link.label}
                 </Link>
               ))}
-              <Button>Get Started</Button>
+              <Link href="/get-started" passHref> {/* Placeholder link */}
+                <Button>Get Started</Button>
+              </Link>
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo) */}
             <div className="md:hidden w-10 h-10"> 

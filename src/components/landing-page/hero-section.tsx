@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroSection: FC = () => {
   return (
@@ -9,28 +10,32 @@ const HeroSection: FC = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 text-center md:text-left">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-primary">
-              Build Stunning Landing Pages with{' '}
-              <span className="text-accent">LandingVerse</span>
+              Empowering Local Innovation Through {' '}
+              <span className="text-accent">Collaboration</span>
             </h1>
             <p className="text-lg md:text-xl text-foreground/80 max-w-xl mx-auto md:mx-0">
-              Effortlessly create high-converting landing pages that captivate your audience and drive results. LandingVerse provides the tools you need to succeed.
+              Open MaduraAI is an open-source platform dedicated to democratizing AI development, fostering collaboration, and addressing real-world challenges through community-driven solutions. Whether you're a student, researcher, or developer, our platform provides the tools and resources to build, share, and deploy AI models tailored to local needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
-                Get Started for Free
-              </Button>
-              <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
-                Learn More
-              </Button>
+              <Link href="#join-us" passHref>
+                <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
+                  Get Started
+                </Button>
+              </Link>
+              <Link href="#features" passHref>
+                <Button size="lg" variant="outline" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
+                  Learn More
+                </Button>
+              </Link>
             </div>
           </div>
           <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105">
             <Image
               src="https://placehold.co/600x400.png"
-              alt="Landing Page Builder Showcase"
+              alt="AI Collaboration Platform Showcase"
               layout="fill"
               objectFit="cover"
-              data-ai-hint="website builder interface"
+              data-ai-hint="AI collaboration community"
               className="rounded-xl"
             />
           </div>

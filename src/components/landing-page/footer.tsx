@@ -13,16 +13,16 @@ const Footer: FC = () => {
           <div>
             <Logo />
             <p className="mt-2 text-sm text-muted-foreground max-w-xs">
-              Crafting the future of landing pages with intuitive design and powerful features.
+              Empowering local innovation through collaboration. Open-source AI for community-driven solutions.
             </p>
           </div>
           <div>
             <h3 className="text-lg font-semibold text-primary mb-3">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
-              <li><Link href="#testimonials" className="text-sm text-muted-foreground hover:text-primary transition-colors">Testimonials</Link></li>
-              <li><Link href="/pricing" className="text-sm text-muted-foreground hover:text-primary transition-colors">Pricing</Link></li>
-              <li><Link href="/blog" className="text-sm text-muted-foreground hover:text-primary transition-colors">Blog</Link></li>
+              <li><Link href="#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
+              <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Explore Projects</Link></li> {/* Placeholder link */}
+              <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li> {/* Placeholder link */}
             </ul>
           </div>
           <div>
@@ -36,7 +36,7 @@ const Footer: FC = () => {
         </div>
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} LandingVerse. All rights reserved.
+            &copy; {currentYear} Open MaduraAI. All rights reserved.
           </p>
           <div className="flex space-x-4 mt-4 md:mt-0">
             <Link href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">

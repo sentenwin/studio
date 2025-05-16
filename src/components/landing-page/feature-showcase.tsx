@@ -1,37 +1,27 @@
 import type { FC } from 'react';
 import FeatureCard from './feature-card';
-import { Cpu, ShieldCheck, BarChartBig, Zap, Edit3, Users } from 'lucide-react';
+import { Brain, Database, Server, Users } from 'lucide-react';
 
 const features = [
   {
-    icon: Edit3,
-    title: 'Intuitive Builder',
-    description: 'Drag-and-drop interface that makes page creation a breeze, no coding required.',
+    icon: Brain,
+    title: 'Model Development & Sharing',
+    description: 'Collaborate on AI models with our integrated tools and version control systems. Inspired by platforms like Hugging Face, we provide a space to host and share models, complete with documentation and community feedback mechanisms.',
   },
   {
-    icon: Cpu,
-    title: 'AI-Powered Content',
-    description: 'Generate compelling copy and headlines with our integrated AI assistant.',
+    icon: Database,
+    title: 'Dataset Repository',
+    description: 'Access and contribute to a growing repository of datasets, facilitating research and development. Our dataset hub encourages transparency and reproducibility, akin to Kaggle\'s dataset sharing model.',
   },
   {
-    icon: Zap,
-    title: 'Lightning Fast',
-    description: 'Pages built with LandingVerse are optimized for speed and performance.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Highly Secure',
-    description: 'Robust security features to protect your data and your visitors.',
-  },
-  {
-    icon: BarChartBig,
-    title: 'Insightful Analytics',
-    description: 'Track your page performance with built-in analytics and reporting tools.',
+    icon: Server,
+    title: 'Developer-Friendly Hosting',
+    description: 'Deploy your AI projects seamlessly with our hosting solutions. We support containerized deployments, ensuring scalability and ease of integration into various applications.',
   },
   {
     icon: Users,
-    title: 'Seamless Integrations',
-    description: 'Connect with your favorite marketing tools and CRMs effortlessly.',
+    title: 'Community Collaboration',
+    description: 'Engage with a vibrant community through forums, collaborative projects, and events. Our platform is designed to foster knowledge exchange and mentorship, promoting collective growth.',
   },
 ];
 
@@ -41,13 +31,13 @@ const FeatureShowcase: FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-primary">
-            Everything You Need to Succeed
+            🚀 What We Offer
           </h2>
           <p className="mt-4 text-lg text-foreground/80 max-w-2xl mx-auto">
-            LandingVerse is packed with powerful features designed to help you create effective landing pages quickly and easily.
+            Open MaduraAI is packed with powerful features designed to help you create effective AI solutions quickly and easily.
           </p>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {features.map((feature) => (
             <FeatureCard
               key={feature.title}

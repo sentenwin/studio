@@ -8,7 +8,7 @@ interface LogoProps {
 const Logo: FC<LogoProps> = ({ className }) => {
   return (
     <Link href="/" className={`text-2xl font-bold text-primary ${className}`}>
-      LandingVerse
+      Open MaduraAI
     </Link>
   );
 };

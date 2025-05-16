@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'LandingVerse',
-  description: 'Crafting the future of landing pages.',
+  title: 'Open MaduraAI',
+  description: 'Empowering Local Innovation Through Collaboration. Open-source AI platform for community-driven solutions.',
 };
 
 export default function RootLayout({
