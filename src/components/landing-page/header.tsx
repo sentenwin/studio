@@ -12,7 +12,7 @@ import React from 'react';
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
-  { href: '#ai-news', label: 'News' }, // Added News link
+  { href: '#ai-news', label: 'News' }, 
   { href: '#join-us', label: 'Join Us' },
 ];
 
@@ -50,7 +50,7 @@ const Header: FC = () => {
                 </SheetTrigger>
                 <SheetContent side="left" className="w-[280px] bg-background p-6">
                   <SheetHeader className="mb-4 border-b pb-4">
-                    <SheetTitle>Navigation Menu</SheetTitle>
+                    <SheetTitle>OpenMaduraAI</SheetTitle>
                   </SheetHeader>
                   <Logo className="mt-4 mb-8" />
                   <nav className="flex flex-col space-y-4">
@@ -100,7 +100,7 @@ const Header: FC = () => {
                 <Button>Get Started</Button>
               </Link>
             </nav>
-            {/* Mobile Spacer (to balance the menu button and center the logo on mobile) */}
+            {/* Mobile Spacer (to balance the menu button and center the logo on mobile by occupying the rightmost cell) */}
             <div className="md:hidden w-10 h-10"> 
               {/* This invisible spacer helps justify-between to center the logo on mobile by occupying the rightmost cell */}
             </div>
