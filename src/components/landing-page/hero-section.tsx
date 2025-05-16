@@ -31,8 +31,8 @@ const HeroSection: FC = () => {
             <Image
               src="https://i.ibb.co/FkZScZCC/file-00000000218861fd8b314f46d298355b-1.png"
               alt="AI development community with Madurai temple"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }}
               data-ai-hint="temple AI"
               className="rounded-xl"
               priority
