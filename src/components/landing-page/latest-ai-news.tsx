@@ -5,7 +5,7 @@
 // 3. Uncomment the try-catch block within the `fetchNews` function.
 // 4. Replace `RSS_FEED_URL` with your desired RSS feed if different from the example.
 
-// import Parser from 'rss-parser'; // Step 2: Uncomment this
+import Parser from 'rss-parser'; // Step 2: Uncomment this
 import type { FC } from 'react';
 import NewsCard from './news-card';
 
@@ -22,7 +22,7 @@ interface NewsItem {
 
 async function fetchNews(): Promise<NewsItem[]> {
   // Step 3: Uncomment this try-catch block and remove the placeholder return below
-  /*
+  
   try {
     const parser = new Parser();
     const feed = await parser.parseURL(RSS_FEED_URL);
@@ -49,7 +49,7 @@ async function fetchNews(): Promise<NewsItem[]> {
     // Fallback to placeholder data on error
     return getPlaceholderNews();
   }
-  */
+  
 
   // Using placeholder data until live fetching is enabled
    if (process.env.NODE_ENV !== 'production') {

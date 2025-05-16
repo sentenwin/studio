@@ -12,6 +12,7 @@ import React from 'react';
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
+  { href: '#ai-news', label: 'News' }, // Added News link
   { href: '#join-us', label: 'Join Us' },
 ];
 
@@ -99,7 +100,7 @@ const Header: FC = () => {
                 <Button>Get Started</Button>
               </Link>
             </nav>
-            {/* Mobile Spacer (to balance the menu button and center the logo) */}
+            {/* Mobile Spacer (to balance the menu button and center the logo on mobile) */}
             <div className="md:hidden w-10 h-10"> 
               {/* This invisible spacer helps justify-between to center the logo on mobile by occupying the rightmost cell */}
             </div>
