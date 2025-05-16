@@ -32,10 +32,10 @@ const HeroSection: FC = () => {
           <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 hover:scale-105">
             <Image
               src="https://placehold.co/600x400.png"
-              alt="Diverse community collaborating on AI model development"
+              alt="Madurai temple scene with people using AI technology and holographic displays"
               layout="fill"
               objectFit="cover"
-              data-ai-hint="community AI"
+              data-ai-hint="temple AI"
               className="rounded-xl"
             />
           </div>
