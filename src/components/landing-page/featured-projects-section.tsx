@@ -8,20 +8,20 @@ import { ArrowRight } from 'lucide-react';
 
 // In a real application, you might fetch this data from an API
 // async function getFeaturedProjects() {
-//   // Example: Fetch top 3 models from Hugging Face API
-//   // const response = await fetch('https://huggingface.co/api/models?sort=downloads&direction=-1&limit=3');
+//   // Example: Fetch top 2 models from Hugging Face API
+//   // const response = await fetch('https://huggingface.co/api/models?sort=downloads&direction=-1&limit=2');
 //   // if (!response.ok) {
 //   //   console.error('Failed to fetch projects');
-//   //   return placeholderProjects.slice(0, 3);
+//   //   return placeholderProjects.slice(0, 2);
 //   // }
 //   // const data = await response.json();
 //   // return data.map(model => ({ ... map to ProjectModel interface ... }));
-//   return placeholderProjects.slice(0, 3); // Use placeholder for now
+//   return placeholderProjects.slice(0, 2); // Use placeholder for now, showing 2 projects
 // }
 
 const FeaturedProjectsSection: FC = () => {
   // const projects = await getFeaturedProjects(); // Uncomment when using actual fetching
-  const projects = placeholderProjects.slice(0, 3); // Using placeholder data directly
+  const projects = placeholderProjects.slice(0, 2); // Using placeholder data directly, showing 2 projects
 
   return (
     <section id="featured-projects" className="py-16 md:py-24 bg-secondary/30">
@@ -34,7 +34,7 @@ const FeaturedProjectsSection: FC = () => {
             Discover innovative AI models and tools from the community.
           </p>
         </div>
-        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12"> {/* Adjusted lg:grid-cols-2 for better layout with 2 items */}
           {projects.map((project) => (
             <ModelCard key={project.id} project={project} />
           ))}
