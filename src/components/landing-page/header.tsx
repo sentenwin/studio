@@ -12,9 +12,9 @@ import React from 'react';
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
-  // { href: '/community', label: 'Community' }, // Removed Community link
-  { href: '#featured-projects', label: 'Projects' }, // Points to featured projects on landing page
-  // { href: '#ai-news', label: 'News' }, // News section removed
+  { href: '/community', label: 'Community' },
+  { href: '#featured-projects', label: 'Projects' },
+  { href: '#featured-datasets', label: 'Datasets' },
   { href: '#join-us', label: 'Join Us' },
 ];
 
@@ -71,8 +71,6 @@ const Header: FC = () => {
                           className="w-full mt-4"
                           onClick={() => {
                             setMobileMenuOpen(false);
-                            // Ensure the dialog in CTABanner is triggered if Get Started links to #join-us
-                            // This might require separate handling if "Get Started" should directly open the dialog
                           }}
                         >
                           Get Started
@@ -113,7 +111,6 @@ const Header: FC = () => {
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo on mobile by occupying the rightmost cell) */}
             <div className="md:hidden w-10 h-10"> 
-              {/* This invisible spacer helps justify-between to center the logo on mobile by occupying the rightmost cell */}
             </div>
           </div>
         </div>

@@ -22,8 +22,9 @@ const Footer: FC = () => {
             <ul className="space-y-2">
               <li><Link href="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
               <li><Link href="/#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
-              {/* <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Explore Projects</Link></li> */} {/* Removed projects link */}
-              {/* <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li> */} {/* Removed Community link */}
+              <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Projects</Link></li>
+              <li><Link href="/datasets" className="text-sm text-muted-foreground hover:text-primary transition-colors">Datasets</Link></li>
+              <li><Link href="/community" className="text-sm text-muted-foreground hover:text-primary transition-colors">Community</Link></li>
             </ul>
           </div>
           <div>
