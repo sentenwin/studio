@@ -16,16 +16,16 @@ const CTABanner: FC = () => {
             Be part of a transformative journey where technology meets community. Contribute, learn, and innovate with Open MaduraAI.
           </p>
           <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-4">
-            {/* <Link href="/projects" passHref> // Removed Explore Projects button
-              <Button 
-                size="lg" 
+            <JoinCommunityDialog />
+            <Link href="/community" passHref>
+              <Button
+                size="lg"
                 variant="outline"
                 className="border-accent text-accent hover:bg-accent/10 hover:text-accent shadow-lg hover:shadow-xl transform transition-shadow duration-300"
               >
-                Explore Projects
+                Explore Community
               </Button>
-            </Link> */}
-            <JoinCommunityDialog />
+            </Link>
           </div>
         </div>
       </div>
