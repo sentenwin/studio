@@ -33,7 +33,6 @@ async function getMembers(): Promise<MemberProfile[]> {
     .from('users')
     .select('name, github_url')
     .not('github_url', 'is', null);
-    // Removed: .order('created_at', { ascending: false }); as 'created_at' column was not in the provided schema
 
   if (supabaseError) {
     console.error('Error fetching users from Supabase. Message:', supabaseError.message, 'Full error:', supabaseError);
@@ -60,6 +59,8 @@ async function getMembers(): Promise<MemberProfile[]> {
 
         if (username) {
           profile.githubLogin = username;
+          profile.githubProfileUrl = user.github_url; // Default to Supabase URL
+
           // For production, consider using a GitHub PAT via environment variables to avoid rate limits
           // const GITHUB_PAT = process.env.GITHUB_PAT;
           // const headers = GITHUB_PAT ? { 'Authorization': `token ${GITHUB_PAT}` } : {};
@@ -70,14 +71,22 @@ async function getMembers(): Promise<MemberProfile[]> {
             const githubData: GitHubUser = await res.json();
             profile.githubName = githubData.name || githubData.login;
             profile.avatarUrl = githubData.avatar_url;
-            profile.githubProfileUrl = githubData.html_url;
+            profile.githubProfileUrl = githubData.html_url; // Update with canonical URL from GitHub if successful
             profile.followers = githubData.followers;
           } else {
             console.warn(`Failed to fetch GitHub data for ${username}: ${res.status} ${await res.text()}`);
+            // If fetch fails, profile.githubProfileUrl remains user.github_url from Supabase
+            // profile.githubName, avatarUrl, followers will remain undefined
           }
         }
       } catch (fetchError: any) {
         console.error(`Error processing GitHub URL ${user.github_url} or fetching data:`, fetchError.message);
+        // If URL parsing fails, ensure githubProfileUrl is still set if user.github_url was valid initially
+        // For now, if URL parsing fails, githubProfileUrl might remain undefined.
+        // However, if user.github_url was present, it's good to try and use it.
+        if (user.github_url && !profile.githubProfileUrl) {
+             profile.githubProfileUrl = user.github_url;
+        }
       }
     }
     memberProfiles.push(profile);
