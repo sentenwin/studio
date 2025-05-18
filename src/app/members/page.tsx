@@ -21,6 +21,7 @@ interface GitHubUser {
 
 export interface MemberProfile {
   supabaseName: string;
+  email: string; // Added email for fetching member's projects
   githubLogin?: string;
   githubName?: string;
   avatarUrl?: string;
@@ -31,7 +32,7 @@ export interface MemberProfile {
 async function getMembers(): Promise<MemberProfile[]> {
   const { data: users, error: supabaseError } = await supabase
     .from('users')
-    .select('name, github_url')
+    .select('name, github_url, email') // Fetch email
     .not('github_url', 'is', null);
 
   if (supabaseError) {
@@ -48,6 +49,7 @@ async function getMembers(): Promise<MemberProfile[]> {
   for (const user of users) {
     let profile: MemberProfile = {
       supabaseName: user.name || 'N/A',
+      email: user.email, // Assign email
     };
 
     if (user.github_url) {
@@ -59,31 +61,22 @@ async function getMembers(): Promise<MemberProfile[]> {
 
         if (username) {
           profile.githubLogin = username;
-          profile.githubProfileUrl = user.github_url; // Default to Supabase URL
+          profile.githubProfileUrl = user.github_url; 
 
-          // For production, consider using a GitHub PAT via environment variables to avoid rate limits
-          // const GITHUB_PAT = process.env.GITHUB_PAT;
-          // const headers = GITHUB_PAT ? { 'Authorization': `token ${GITHUB_PAT}` } : {};
-          // const res = await fetch(`https://api.github.com/users/${username}`, { headers });
           const res = await fetch(`https://api.github.com/users/${username}`);
           
           if (res.ok) {
             const githubData: GitHubUser = await res.json();
             profile.githubName = githubData.name || githubData.login;
             profile.avatarUrl = githubData.avatar_url;
-            profile.githubProfileUrl = githubData.html_url; // Update with canonical URL from GitHub if successful
+            profile.githubProfileUrl = githubData.html_url; 
             profile.followers = githubData.followers;
           } else {
             console.warn(`Failed to fetch GitHub data for ${username}: ${res.status} ${await res.text()}`);
-            // If fetch fails, profile.githubProfileUrl remains user.github_url from Supabase
-            // profile.githubName, avatarUrl, followers will remain undefined
           }
         }
       } catch (fetchError: any) {
         console.error(`Error processing GitHub URL ${user.github_url} or fetching data:`, fetchError.message);
-        // If URL parsing fails, ensure githubProfileUrl is still set if user.github_url was valid initially
-        // For now, if URL parsing fails, githubProfileUrl might remain undefined.
-        // However, if user.github_url was present, it's good to try and use it.
         if (user.github_url && !profile.githubProfileUrl) {
              profile.githubProfileUrl = user.github_url;
         }
