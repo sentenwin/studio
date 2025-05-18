@@ -22,6 +22,8 @@ const projectFormSchema = z.object({
   projectTags: z.string().optional(), // Comma-separated, can be processed later
   imageUrl: z.string().url({ message: "Please enter a valid image URL." }),
   videoDemoUrl: z.string().url({ message: "Please enter a valid URL or leave empty." }).optional().or(z.literal('')),
+  githubRepoUrl: z.string().url({ message: "Please enter a valid GitHub repository URL." }).optional().or(z.literal('')),
+  developers: z.string().optional(), // Comma-separated GitHub usernames
 });
 
 type ProjectFormData = z.infer<typeof projectFormSchema>;
@@ -40,6 +42,8 @@ export default function SubmitProjectPage() {
       projectTags: "",
       imageUrl: "",
       videoDemoUrl: "",
+      githubRepoUrl: "",
+      developers: "",
     },
   });
 
@@ -132,6 +136,32 @@ export default function SubmitProjectPage() {
               />
               <FormField
                 control={form.control}
+                name="githubRepoUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>GitHub Repo URL (Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="https://github.com/yourusername/your-repo" {...field} disabled={isSubmitting} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="developers"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Developers (comma-separated GitHub usernames, Optional)</FormLabel>
+                    <FormControl>
+                      <Input placeholder="username1, username2" {...field} disabled={isSubmitting} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="imageUrl"
                 render={({ field }) => (
                   <FormItem>
@@ -171,3 +201,4 @@ export default function SubmitProjectPage() {
     </div>
   );
 }
+
