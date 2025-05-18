@@ -4,6 +4,7 @@ import HeroSection from '@/components/landing-page/hero-section';
 import AboutSection from '@/components/landing-page/about-section';
 import FeatureShowcase from '@/components/landing-page/feature-showcase';
 import MissionSection from '@/components/landing-page/mission-section'; 
+import FeaturedProjectsSection from '@/components/landing-page/featured-projects-section';
 import CTABanner from '@/components/landing-page/cta-banner';
 import Footer from '@/components/landing-page/footer';
 
@@ -16,7 +17,9 @@ export default function LandingPage() {
         <AboutSection />
         <FeatureShowcase />
         <MissionSection />
-        <CTABanner />
+        {/* <LatestAiNews /> // Replaced by FeaturedProjectsSection */}
+        <CTABanner /> 
+        <FeaturedProjectsSection /> 
       </main>
       <Footer />
     </div>

@@ -12,8 +12,9 @@ import React from 'react';
 const navLinks = [
   { href: '#features', label: 'Features' },
   { href: '#mission', label: 'Our Mission' },
-  // { href: '/projects', label: 'Projects' }, // Link to projects page
   // { href: '/community', label: 'Community' }, // Removed Community link
+  { href: '#featured-projects', label: 'Projects' }, // Points to featured projects on landing page
+  // { href: '#ai-news', label: 'News' }, // News section removed
   { href: '#join-us', label: 'Join Us' },
 ];
 
@@ -68,7 +69,11 @@ const Header: FC = () => {
                      <Link href="/#join-us" passHref>
                         <Button 
                           className="w-full mt-4"
-                          onClick={() => setMobileMenuOpen(false)}
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            // Ensure the dialog in CTABanner is triggered if Get Started links to #join-us
+                            // This might require separate handling if "Get Started" should directly open the dialog
+                          }}
                         >
                           Get Started
                         </Button>
