@@ -28,6 +28,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from '@/lib/supabaseClient';
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -42,6 +43,7 @@ type FormData = z.infer<typeof formSchema>;
 export function JoinCommunityDialog() {
   const { toast } = useToast();
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
@@ -54,22 +56,66 @@ export function JoinCommunityDialog() {
     },
   });
 
-  function onSubmit(values: FormData) {
-    console.log("Join community form submitted:", values);
-    toast({
-      title: "Welcome Aboard!",
-      description: "Thanks for your interest. We'll be in touch soon.",
-    });
-    form.reset();
-    setIsOpen(false);
+  async function onSubmit(values: FormData) {
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase
+        .from('users') // Make sure 'users' is your table name
+        .insert([
+          {
+            name: values.name,
+            email: values.email,
+            phone: values.phone || null,
+            github_link: values.githubLink || null, // Supabase columns are often snake_case
+            gender: values.gender || null,
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        toast({
+          title: "Submission Failed",
+          description: error.message || "Could not save your details. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        console.log("Supabase success data:", data);
+        toast({
+          title: "Welcome Aboard!",
+          description: "Thanks for your interest. We'll be in touch soon.",
+        });
+        form.reset();
+        setIsOpen(false);
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      toast({
+        title: "Submission Error",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog 
+        open={isOpen} 
+        onOpenChange={(openState) => {
+            if (isSubmitting) return; // Prevent closing dialog while submitting
+            setIsOpen(openState);
+            if (!openState) { // If dialog is closing
+                form.reset(); // Reset form
+            }
+        }}
+    >
       <DialogTrigger asChild>
         <Button
           size="lg"
           className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
+          disabled={isSubmitting}
         >
           Join the Community
         </Button>
@@ -90,7 +136,7 @@ export function JoinCommunityDialog() {
                 <FormItem>
                   <FormLabel>Full Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your full name" {...field} />
+                    <Input placeholder="Enter your full name" {...field} disabled={isSubmitting} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -103,7 +149,7 @@ export function JoinCommunityDialog() {
                 <FormItem>
                   <FormLabel>Email Address</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="your.email@example.com" {...field} />
+                    <Input type="email" placeholder="your.email@example.com" {...field} disabled={isSubmitting}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,7 +162,7 @@ export function JoinCommunityDialog() {
                 <FormItem>
                   <FormLabel>Phone Number (Optional)</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="Your contact number" {...field} />
+                    <Input type="tel" placeholder="Your contact number" {...field} disabled={isSubmitting}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,7 +175,7 @@ export function JoinCommunityDialog() {
                 <FormItem>
                   <FormLabel>GitHub Profile URL (Optional)</FormLabel>
                   <FormControl>
-                    <Input placeholder="https://github.com/yourusername" {...field} />
+                    <Input placeholder="https://github.com/yourusername" {...field} disabled={isSubmitting}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -146,10 +192,11 @@ export function JoinCommunityDialog() {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                       className="flex flex-col space-y-1"
+                      disabled={isSubmitting}
                     >
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="male" />
+                          <RadioGroupItem value="male" disabled={isSubmitting} />
                         </FormControl>
                         <FormLabel className="font-normal">
                           Male
@@ -157,7 +204,7 @@ export function JoinCommunityDialog() {
                       </FormItem>
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="female" />
+                          <RadioGroupItem value="female" disabled={isSubmitting} />
                         </FormControl>
                         <FormLabel className="font-normal">
                           Female
@@ -165,7 +212,7 @@ export function JoinCommunityDialog() {
                       </FormItem>
                       <FormItem className="flex items-center space-x-3 space-y-0">
                         <FormControl>
-                          <RadioGroupItem value="prefer_not_to_say" />
+                          <RadioGroupItem value="prefer_not_to_say" disabled={isSubmitting} />
                         </FormControl>
                         <FormLabel className="font-normal">
                           Prefer not to say
@@ -179,11 +226,13 @@ export function JoinCommunityDialog() {
             />
             <DialogFooter className="pt-4">
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" disabled={isSubmitting}>
                   Cancel
                 </Button>
               </DialogClose>
-              <Button type="submit">Submit</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </Button>
             </DialogFooter>
           </form>
         </Form>
