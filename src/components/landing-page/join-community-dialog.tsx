@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import React from "react";
+import { useRouter } from 'next/navigation'; // Import useRouter
 
 import { Button } from "@/components/ui/button";
 import {
@@ -42,6 +43,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function JoinCommunityDialog() {
   const { toast } = useToast();
+  const router = useRouter(); // Initialize useRouter
   const [isOpen, setIsOpen] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -59,34 +61,64 @@ export function JoinCommunityDialog() {
   async function onSubmit(values: FormData) {
     setIsSubmitting(true);
     try {
-      const { data, error } = await supabase
-        .from('users') 
-        .insert([
-          {
-            name: values.name,
-            email: values.email,
-            phone: values.phone || null,
-            github_url: values.githubLink || null, // Map form's githubLink to db's github_url
-            gender: values.gender || null,
-          },
-        ])
-        .select();
+      // Check if email already exists
+      const { data: existingUser, error: selectError } = await supabase
+        .from('users')
+        .select('email')
+        .eq('email', values.email)
+        .maybeSingle(); // Use maybeSingle for UNIQUE constraints
 
-      if (error) {
-        console.error('Supabase error:', error);
+      if (selectError && selectError.code !== 'PGRST116') { // PGRST116 means no rows found, which is fine for maybeSingle
+        console.error('Supabase select error:', selectError);
         toast({
-          title: "Submission Failed",
-          description: error.message || "Could not save your details. Please try again.",
+          title: "Error Checking User",
+          description: selectError.message || "Could not verify your details. Please try again.",
           variant: "destructive",
         });
-      } else {
-        console.log("Supabase success data:", data);
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (existingUser) {
+        // Email already exists
         toast({
-          title: "Welcome Aboard!",
-          description: "Thanks for your interest. We'll be in touch soon.",
+          title: "Already Joined!",
+          description: "You have already joined our community. Redirecting...",
         });
+        setIsOpen(false); // Close dialog
         form.reset();
-        setIsOpen(false);
+        router.push('/projects'); // Redirect to projects page
+      } else {
+        // Email does not exist, proceed with insert
+        const { data, error: insertError } = await supabase
+          .from('users')
+          .insert([
+            {
+              name: values.name,
+              email: values.email,
+              phone: values.phone || null,
+              github_url: values.githubLink || null,
+              gender: values.gender || null,
+            },
+          ])
+          .select();
+
+        if (insertError) {
+          console.error('Supabase insert error:', insertError);
+          toast({
+            title: "Submission Failed",
+            description: insertError.message || "Could not save your details. Please try again.",
+            variant: "destructive",
+          });
+        } else {
+          console.log("Supabase success data:", data);
+          toast({
+            title: "Welcome Aboard!",
+            description: "Thanks for your interest. We'll be in touch soon.",
+          });
+          form.reset();
+          setIsOpen(false);
+        }
       }
     } catch (err) {
       console.error('Unexpected error:', err);
@@ -101,21 +133,20 @@ export function JoinCommunityDialog() {
   }
 
   return (
-    <Dialog 
-        open={isOpen} 
+    <Dialog
+        open={isOpen}
         onOpenChange={(openState) => {
-            if (isSubmitting) return; 
+            if (isSubmitting) return;
             setIsOpen(openState);
-            if (!openState) { 
-                form.reset(); 
+            if (!openState) {
+                form.reset();
             }
         }}
     >
       <DialogTrigger asChild>
         <Button
           size="lg"
-          variant="outline"
-          className="border-accent text-accent hover:bg-accent hover:text-accent-foreground shadow-lg hover:shadow-xl transform transition-shadow duration-300"
+          className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
           disabled={isSubmitting}
         >
           Join the Community
