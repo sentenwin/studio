@@ -20,8 +20,9 @@ interface GitHubUser {
 }
 
 export interface MemberProfile {
+  id: string; // Supabase user ID
   supabaseName: string;
-  email: string; // Added email for fetching member's projects
+  email: string;
   githubLogin?: string;
   githubName?: string;
   avatarUrl?: string;
@@ -30,9 +31,10 @@ export interface MemberProfile {
 }
 
 async function getMembers(): Promise<MemberProfile[]> {
+  // Select id, name, email, and github_url
   const { data: users, error: supabaseError } = await supabase
     .from('users')
-    .select('name, github_url, email') // Fetch email
+    .select('id, name, github_url, email')
     .not('github_url', 'is', null);
 
   if (supabaseError) {
@@ -48,8 +50,9 @@ async function getMembers(): Promise<MemberProfile[]> {
 
   for (const user of users) {
     let profile: MemberProfile = {
+      id: user.id, // Store Supabase user ID
       supabaseName: user.name || 'N/A',
-      email: user.email, // Assign email
+      email: user.email,
     };
 
     if (user.github_url) {
@@ -61,15 +64,18 @@ async function getMembers(): Promise<MemberProfile[]> {
 
         if (username) {
           profile.githubLogin = username;
-          profile.githubProfileUrl = user.github_url; 
+          profile.githubProfileUrl = user.github_url;
 
+          // TODO: Consider adding Authorization header for higher rate limits in production
+          // const headers = process.env.GITHUB_PAT ? { 'Authorization': `token ${process.env.GITHUB_PAT}` } : {};
+          // const res = await fetch(`https://api.github.com/users/${username}`, { headers });
           const res = await fetch(`https://api.github.com/users/${username}`);
-          
+
           if (res.ok) {
             const githubData: GitHubUser = await res.json();
             profile.githubName = githubData.name || githubData.login;
             profile.avatarUrl = githubData.avatar_url;
-            profile.githubProfileUrl = githubData.html_url; 
+            profile.githubProfileUrl = githubData.html_url;
             profile.followers = githubData.followers;
           } else {
             console.warn(`Failed to fetch GitHub data for ${username}: ${res.status} ${await res.text()}`);
@@ -110,8 +116,8 @@ export default async function MembersPage() {
           </div>
         ) : (
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-            {members.map((member, index) => (
-              <MemberCard key={member.githubLogin || `member-${index}`} member={member} />
+            {members.map((member) => (
+              <MemberCard key={member.id} member={member} />
             ))}
           </div>
         )}

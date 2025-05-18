@@ -1,57 +1,24 @@
-
-"use client";
+"use client"; // No longer needs to be a client component if project display is removed here
 
 import type { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+// Removed useState and supabase client import as project fetching is moved
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Github, Users, Briefcase } from 'lucide-react'; // Added Briefcase for projects icon
+import { Github, Users, Briefcase } from 'lucide-react';
 import type { MemberProfile } from '@/app/members/page';
-import { supabase } from '@/lib/supabaseClient';
-
-// Simplified project type for display
-interface BriefProject {
-  id: string;
-  project_name: string;
-}
+// Removed supabase client import
 
 interface MemberCardProps {
-  member: MemberProfile;
+  member: MemberProfile; // MemberProfile now includes 'id' and 'email'
 }
 
 const MemberCard: FC<MemberCardProps> = ({ member }) => {
   const displayName = member.githubName || member.supabaseName;
 
-  const [showProjects, setShowProjects] = useState(false);
-  const [memberProjects, setMemberProjects] = useState<BriefProject[] | null>(null);
-  const [isLoadingProjects, setIsLoadingProjects] = useState(false);
-
-  const handleToggleProjects = async () => {
-    if (!showProjects && !memberProjects) { // Only fetch if showing for the first time
-      setIsLoadingProjects(true);
-      try {
-        const { data, error } = await supabase
-          .from('projects')
-          .select('id, project_name')
-          .eq('email', member.email);
-
-        if (error) {
-          console.error('Error fetching member projects:', error.message);
-          setMemberProjects([]); // Set to empty array on error to show "Upload" button
-        } else {
-          setMemberProjects(data || []);
-        }
-      } catch (err) {
-        console.error('Unexpected error fetching projects:', err);
-        setMemberProjects([]);
-      } finally {
-        setIsLoadingProjects(false);
-      }
-    }
-    setShowProjects(!showProjects);
-  };
+  // Removed state and functions for fetching projects within this card
+  // (showProjects, memberProjects, isLoadingProjects, handleToggleProjects)
 
   return (
     <Card className="flex flex-col h-full shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out transform hover:-translate-y-1">
@@ -89,37 +56,16 @@ const MemberCard: FC<MemberCardProps> = ({ member }) => {
         )}
       </CardContent>
 
-      {/* My Projects Section */}
+      {/* "View Profile & Projects" Button linking to dynamic profile page */}
       <CardContent className="py-3 border-t border-b">
         <div className="text-center">
-          <Button variant="secondary" size="sm" onClick={handleToggleProjects} className="w-full">
-            <Briefcase className="mr-2 h-4 w-4" />
-            {showProjects ? 'Hide My Projects' : 'Show My Projects'}
+          <Button asChild variant="secondary" size="sm" className="w-full">
+            <Link href={`/profile/${member.id}`}> {/* Link to dynamic profile page */}
+              <Briefcase className="mr-2 h-4 w-4" />
+              View Profile & Projects
+            </Link>
           </Button>
         </div>
-        {showProjects && (
-          <div className="mt-3 text-left">
-            {isLoadingProjects && <p className="text-sm text-muted-foreground text-center">Loading projects...</p>}
-            {!isLoadingProjects && memberProjects && memberProjects.length === 0 && (
-              <div className="text-center space-y-2">
-                <p className="text-sm text-muted-foreground">No projects found.</p>
-                <Button asChild variant="outline" size="sm" className="w-full">
-                  <Link href="/projects/submit">Upload New Project</Link>
-                </Button>
-              </div>
-            )}
-            {!isLoadingProjects && memberProjects && memberProjects.length > 0 && (
-              <>
-                <h4 className="text-sm font-medium text-primary mb-1">Projects:</h4>
-                <ul className="list-disc list-inside pl-2 space-y-1 text-sm text-foreground/80">
-                  {memberProjects.map((project) => (
-                    <li key={project.id}>{project.project_name}</li>
-                  ))}
-                </ul>
-              </>
-            )}
-          </div>
-        )}
       </CardContent>
 
       <CardFooter>
