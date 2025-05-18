@@ -66,16 +66,6 @@ const Header: FC = () => {
                         {link.label}
                       </Link>
                     ))}
-                     <Link href="/#join-us" passHref>
-                        <Button 
-                          className="w-full mt-4"
-                          onClick={() => {
-                            setMobileMenuOpen(false);
-                          }}
-                        >
-                          Get Started
-                        </Button>
-                    </Link>
                   </nav>
                 </SheetContent>
               </Sheet>
