@@ -26,6 +26,15 @@ const CTABanner: FC = () => {
                 Explore Community
               </Button>
             </Link>
+            <Link href="/members" passHref>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-accent text-accent hover:bg-accent/10 hover:text-accent shadow-lg hover:shadow-xl transform transition-shadow duration-300"
+              >
+                Meet Our Members
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
