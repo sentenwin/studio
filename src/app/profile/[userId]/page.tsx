@@ -40,6 +40,19 @@ interface Project {
   // Add other fields from your 'projects' table if needed for display
 }
 
+export async function generateStaticParams() {
+  const { data: users, error } = await supabase.from('users').select('id');
+
+  if (error || !users) {
+    console.error('Error fetching user IDs for generateStaticParams:', error?.message);
+    return [];
+  }
+
+  return users.map((user) => ({
+    userId: user.id.toString(),
+  }));
+}
+
 async function getUserProfile(userId: string): Promise<UserProfile | null> {
   const { data: user, error: supabaseError } = await supabase
     .from('users')
