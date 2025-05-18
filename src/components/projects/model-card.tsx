@@ -42,7 +42,7 @@ const ModelCard: FC<ModelCardProps> = ({ project }) => {
       <CardFooter>
         <Button asChild className="w-full" variant="outline">
           <Link href={project.hfUrl} target="_blank" rel="noopener noreferrer">
-            View on Hugging Face <ExternalLink className="ml-2 h-4 w-4" />
+            View on GitHub <ExternalLink className="ml-2 h-4 w-4" />
           </Link>
         </Button>
       </CardFooter>
