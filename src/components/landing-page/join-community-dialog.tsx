@@ -60,13 +60,13 @@ export function JoinCommunityDialog() {
     setIsSubmitting(true);
     try {
       const { data, error } = await supabase
-        .from('users') // Make sure 'users' is your table name
+        .from('users') 
         .insert([
           {
             name: values.name,
             email: values.email,
             phone: values.phone || null,
-            github_link: values.githubLink || null, // Supabase columns are often snake_case
+            github_url: values.githubLink || null, // Map form's githubLink to db's github_url
             gender: values.gender || null,
           },
         ])
@@ -104,17 +104,18 @@ export function JoinCommunityDialog() {
     <Dialog 
         open={isOpen} 
         onOpenChange={(openState) => {
-            if (isSubmitting) return; // Prevent closing dialog while submitting
+            if (isSubmitting) return; 
             setIsOpen(openState);
-            if (!openState) { // If dialog is closing
-                form.reset(); // Reset form
+            if (!openState) { 
+                form.reset(); 
             }
         }}
     >
       <DialogTrigger asChild>
         <Button
           size="lg"
-          className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg hover:shadow-xl transform transition-shadow duration-300"
+          variant="outline"
+          className="border-accent text-accent hover:bg-accent hover:text-accent-foreground shadow-lg hover:shadow-xl transform transition-shadow duration-300"
           disabled={isSubmitting}
         >
           Join the Community
