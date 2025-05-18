@@ -14,6 +14,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient'; // Import Supabase client
 
 const projectFormSchema = z.object({
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -49,20 +50,55 @@ export default function SubmitProjectPage() {
 
   async function onSubmit(values: ProjectFormData) {
     setIsSubmitting(true);
-    console.log("Project Submission Data:", values);
-    // In a real app, you would send this data to your backend/Supabase
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    toast({
-      title: "Project Submitted!",
-      description: "Thank you for sharing your project. It will be reviewed shortly.",
-    });
-    form.reset();
-    setIsSubmitting(false);
-    // Optionally redirect after submission
-    // router.push('/projects'); 
+    const tagsArray = values.projectTags?.split(',').map(tag => tag.trim()).filter(tag => tag) || [];
+    const developersArray = values.developers?.split(',').map(dev => dev.trim()).filter(dev => dev) || [];
+
+    try {
+      const { data, error } = await supabase
+        .from('projects')
+        .insert([
+          {
+            email: values.email,
+            project_name: values.projectName,
+            project_details: values.projectDetails,
+            project_tags: tagsArray.length > 0 ? tagsArray : null,
+            image_url: values.imageUrl,
+            video_demo_url: values.videoDemoUrl || null,
+            github_repo_url: values.githubRepoUrl || null,
+            developers: developersArray.length > 0 ? developersArray : null,
+            // Default values for approved, view_allowed, view_count, interest_count, donate_amount, status
+            // are handled by the database schema or can be set later via an admin interface.
+          },
+        ])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        toast({
+          title: "Submission Failed",
+          description: error.message || "Could not save your project. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Project Submitted!",
+          description: "Thank you for sharing your project. It will be reviewed shortly.",
+        });
+        form.reset();
+        // Optionally redirect after submission
+        // router.push('/projects'); 
+      }
+    } catch (err: any) {
+      console.error('Unexpected error during project submission:', err);
+      toast({
+        title: "Submission Error",
+        description: err.message || "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
