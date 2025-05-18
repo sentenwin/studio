@@ -148,7 +148,7 @@ export default async function UserProfilePage({ params }: { params: { userId: st
     name: p.project_name,
     author: displayName, // Author is the profile user
     description: p.project_details || 'No description provided.',
-    imageUrl: p.image_url || 'https://placehold.co/600x400.png',
+    imageUrl: p.image_url || 'https://placehold.co/600x400.png', // Placeholder if image_url is missing
     hfUrl: p.github_repo_url || '#', // Use GitHub repo URL or a fallback
     tags: p.project_tags || [],
     dataAiHint: 'project image' // Generic hint
