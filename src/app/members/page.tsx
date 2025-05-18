@@ -32,11 +32,11 @@ async function getMembers(): Promise<MemberProfile[]> {
   const { data: users, error: supabaseError } = await supabase
     .from('users')
     .select('name, github_url')
-    .not('github_url', 'is', null)
-    .order('created_at', { ascending: false });
+    .not('github_url', 'is', null);
+    // Removed: .order('created_at', { ascending: false }); as 'created_at' column was not in the provided schema
 
   if (supabaseError) {
-    console.error('Error fetching users from Supabase:', supabaseError);
+    console.error('Error fetching users from Supabase. Message:', supabaseError.message, 'Full error:', supabaseError);
     return [];
   }
 
