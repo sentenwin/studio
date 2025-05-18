@@ -11,7 +11,7 @@ import React from 'react';
 
 const navLinks = [
   { href: '#features', label: 'Features' },
-  { href: '#mission', label: 'Our Mission' },
+  { href: '#mission', label: 'Mission' },
   { href: '/community', label: 'Community' },
   { href: '#featured-projects', label: 'Projects' },
   { href: '#featured-datasets', label: 'Datasets' },
