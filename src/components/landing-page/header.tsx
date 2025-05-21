@@ -10,7 +10,6 @@ import { cn } from '@/lib/utils';
 import React from 'react';
 
 const navLinks = [
-  { href: '#features', label: 'Features' },
   { href: '#about', label: 'About us' },
   { href: '/community', label: 'Community' },
   { href: '#featured-projects', label: 'Projects' },
