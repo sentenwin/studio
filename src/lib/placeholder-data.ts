@@ -360,7 +360,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool13',
     name: 'Password Generator',
     description: 'Creates strong, random passwords with customizable length and characters.',
-    weblink: 'https://www.lastpass.com/password-generator',
+    weblink: '/tools/password-generator', // Updated to internal link
     tags: ['Random password tool', 'Secure password maker', 'Key generator'],
     dataAiHint: 'password lock'
   },
@@ -373,3 +373,5 @@ export const placeholderQuickTools: QuickTool[] = [
     dataAiHint: 'screen record'
   }
 ];
+
+    
