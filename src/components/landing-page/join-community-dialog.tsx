@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import React from "react";
-import { useRouter } from 'next/navigation'; // Import useRouter
+import { useRouter } from 'next/navigation'; 
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,11 +30,12 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from '@/lib/supabaseClient';
+import { sendWelcomeNotifications } from "@/ai/flows/send-welcome-notifications-flow"; // Import the new flow
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }).optional().or(z.literal('')),
+  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }).refine(val => /^\+?[1-9]\d{1,14}$/.test(val) || val === '', { message: "Please enter a valid phone number in E.164 format (e.g., +1234567890) or leave empty."}).optional().or(z.literal('')),
   githubLink: z.string().url({ message: "Please enter a valid URL (e.g., https://github.com/username)." }).optional().or(z.literal('')),
   gender: z.enum(["male", "female", "prefer_not_to_say"]).optional(),
 });
@@ -43,7 +44,7 @@ type FormData = z.infer<typeof formSchema>;
 
 export function JoinCommunityDialog() {
   const { toast } = useToast();
-  const router = useRouter(); // Initialize useRouter
+  const router = useRouter(); 
   const [isOpen, setIsOpen] = React.useState(false);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
@@ -61,14 +62,13 @@ export function JoinCommunityDialog() {
   async function onSubmit(values: FormData) {
     setIsSubmitting(true);
     try {
-      // Check if email already exists
       const { data: existingUser, error: selectError } = await supabase
         .from('users')
         .select('email')
         .eq('email', values.email)
-        .maybeSingle(); // Use maybeSingle for UNIQUE constraints
+        .maybeSingle(); 
 
-      if (selectError && selectError.code !== 'PGRST116') { // PGRST116 means no rows found, which is fine for maybeSingle
+      if (selectError && selectError.code !== 'PGRST116') { 
         console.error('Supabase select error:', selectError);
         toast({
           title: "Error Checking User",
@@ -80,28 +80,27 @@ export function JoinCommunityDialog() {
       }
 
       if (existingUser) {
-        // Email already exists
         toast({
           title: "Already Joined!",
           description: "You have already joined our community. Redirecting...",
         });
-        setIsOpen(false); // Close dialog
+        setIsOpen(false); 
         form.reset();
-        router.push('/projects'); // Redirect to projects page
+        router.push('/projects'); 
       } else {
-        // Email does not exist, proceed with insert
-        const { data, error: insertError } = await supabase
+        const { data: newUserData, error: insertError } = await supabase
           .from('users')
           .insert([
             {
               name: values.name,
               email: values.email,
               phone: values.phone || null,
-              github_url: values.githubLink || null,
+              github_url: values.githubLink || null, 
               gender: values.gender || null,
             },
           ])
-          .select();
+          .select()
+          .single(); // Assuming you want the newly inserted user's data
 
         if (insertError) {
           console.error('Supabase insert error:', insertError);
@@ -111,20 +110,54 @@ export function JoinCommunityDialog() {
             variant: "destructive",
           });
         } else {
-          console.log("Supabase success data:", data);
+          console.log("Supabase success data:", newUserData);
           toast({
             title: "Welcome Aboard!",
             description: "Thanks for your interest. We'll be in touch soon.",
           });
+          
+          // Send Twilio notifications if phone number is provided
+          if (values.phone && newUserData) { // Check if newUserData is not null
+            try {
+              toast({
+                title: "Sending Welcome Notifications...",
+                description: "Please wait a moment.",
+              });
+              const notificationResult = await sendWelcomeNotifications({ name: values.name, phone: values.phone });
+              console.log('Twilio Notification Result:', notificationResult);
+              if (notificationResult.error) {
+                toast({
+                  title: "Notification Issue",
+                  description: `Welcome message sent, but: ${notificationResult.error}`,
+                  variant: "destructive",
+                  duration: 7000,
+                });
+              } else {
+                 toast({
+                  title: "Notifications Sent!",
+                  description: `SMS status: ${notificationResult.smsStatus}, Call status: ${notificationResult.callStatus}`,
+                  duration: 7000,
+                });
+              }
+            } catch (notificationError: any) {
+              console.error('Error sending Twilio notifications:', notificationError);
+              toast({
+                title: "Notification Error",
+                description: notificationError.message || "Failed to send welcome SMS/call.",
+                variant: "destructive",
+              });
+            }
+          }
+          
           form.reset();
           setIsOpen(false);
         }
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Unexpected error:', err);
       toast({
         title: "Submission Error",
-        description: "An unexpected error occurred. Please try again.",
+        description: err.message || "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -136,9 +169,9 @@ export function JoinCommunityDialog() {
     <Dialog
         open={isOpen}
         onOpenChange={(openState) => {
-            if (isSubmitting) return;
+            if (isSubmitting) return; // Prevent closing while submitting
             setIsOpen(openState);
-            if (!openState) {
+            if (!openState) { // Reset form if dialog is closed
                 form.reset();
             }
         }}
@@ -192,7 +225,7 @@ export function JoinCommunityDialog() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number (Optional)</FormLabel>
+                  <FormLabel>Phone Number (e.g., +1234567890, Optional)</FormLabel>
                   <FormControl>
                     <Input type="tel" placeholder="Your contact number" {...field} disabled={isSubmitting}/>
                   </FormControl>
