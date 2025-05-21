@@ -1,22 +1,16 @@
 
 "use client";
 
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, Search, ExternalLink, Loader2 } from 'lucide-react';
+import { ArrowLeft, Search, ExternalLink, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import ToolCard from '@/components/quick-open-tools/tool-card';
 import { placeholderQuickTools, type QuickTool } from '@/lib/placeholder-data';
 import { searchQuickTools, type SearchQuickToolsOutput } from '@/ai/flows/search-tools-flow';
 
-// Metadata should be defined in a parent Server Component or layout for client components.
-// For this standalone page, we'll set a default title if needed or rely on layout.
-// export const metadata: Metadata = {
-//   title: 'Quick Open Tools - Open MaduraAI',
-//   description: 'A collection of handy online tools for various tasks.',
-// };
+const ITEMS_PER_PAGE = 6;
 
 export default function QuickOpenToolsPage() {
   const allTools = placeholderQuickTools;
@@ -25,6 +19,7 @@ export default function QuickOpenToolsPage() {
   const [searchResults, setSearchResults] = useState<SearchQuickToolsOutput>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [searchError, setSearchError] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) {
@@ -53,12 +48,24 @@ export default function QuickOpenToolsPage() {
   };
   
   React.useEffect(() => {
-    // Set a default title if this page is rendered directly
     if (typeof document !== 'undefined') {
         document.title = 'Quick Open Tools - Open MaduraAI';
     }
   }, []);
 
+  // Pagination logic
+  const totalPages = Math.ceil(allTools.length / ITEMS_PER_PAGE);
+  const indexOfLastItem = currentPage * ITEMS_PER_PAGE;
+  const indexOfFirstItem = indexOfLastItem - ITEMS_PER_PAGE;
+  const currentItemsToDisplay = allTools.slice(indexOfFirstItem, indexOfLastItem);
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -138,11 +145,38 @@ export default function QuickOpenToolsPage() {
             <p className="text-xl text-muted-foreground">No tools available at the moment. Check back soon!</p>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {allTools.map((tool) => (
-              <ToolCard key={tool.id} tool={tool} />
-            ))}
-          </div>
+          <>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              {currentItemsToDisplay.map((tool) => (
+                <ToolCard key={tool.id} tool={tool} />
+              ))}
+            </div>
+            {totalPages > 1 && (
+              <div className="mt-12 flex justify-center items-center space-x-4">
+                <Button
+                  variant="outline"
+                  onClick={handlePrevPage}
+                  disabled={currentPage === 1}
+                  aria-label="Previous page"
+                >
+                  <ChevronLeft className="mr-2 h-4 w-4" />
+                  Previous
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <Button
+                  variant="outline"
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                  aria-label="Next page"
+                >
+                  Next
+                  <ChevronRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            )}
+          </>
         )}
       </main>
       <footer className="py-8 bg-secondary/30 border-t border-border text-center">
@@ -153,4 +187,3 @@ export default function QuickOpenToolsPage() {
     </div>
   );
 }
-
