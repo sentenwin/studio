@@ -31,7 +31,86 @@ export const placeholderProjects: ProjectModel[] = [
     tags: ['Computer Vision', 'Object Detection'],
     dataAiHint: 'robotic eye'
   },
-  // Only showing 2 as per previous request for featured section, full list would be here.
+   {
+    id: '3',
+    name: 'AudioSynth AI',
+    author: 'MusicTechLabs',
+    description: 'Generates unique musical pieces and realistic soundscapes based on textual prompts or existing melodies, with fine-grained control.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Audio Generation', 'Music AI'],
+    dataAiHint: 'sound wave'
+  },
+  {
+    id: '4',
+    name: 'CodeHelper GPT',
+    author: 'DevToolsInc',
+    description: 'An AI pair programmer that assists with code completion, debugging complex issues, and generating documentation in multiple languages.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Code Generation', 'AI Assistant'],
+    dataAiHint: 'code editor'
+  },
+  {
+    id: '5',
+    name: 'MediScan AI',
+    author: 'HealthInnovators',
+    description: 'Analyzes medical images (X-rays, MRIs) to assist healthcare professionals in early-stage disease detection and diagnosis.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Healthcare AI', 'Medical Imaging'],
+    dataAiHint: 'medical scan'
+  },
+  {
+    id: '6',
+    name: 'EcoForecaster Plus',
+    author: 'ClimateResearchOrg',
+    description: 'Predicts environmental changes, pollution levels, and long-term weather patterns using complex climate data and satellite imagery.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Climate AI', 'Forecasting', 'Environment'],
+    dataAiHint: 'earth weather'
+  },
+  {
+    id: '7',
+    name: 'RoboNavigator X',
+    author: 'AutonomousSystemsCo',
+    description: 'Advanced real-time pathfinding and navigation AI for autonomous robots and drones in complex, dynamic environments.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Robotics', 'Autonomous Navigation'],
+    dataAiHint: 'robot path'
+  },
+  {
+    id: '8',
+    name: 'SentimentAnalyzer Max',
+    author: 'MarketInsightsLLC',
+    description: 'Deeply analyzes text data from social media, news, and customer reviews to determine nuanced public sentiment and trends.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['NLP', 'Sentiment Analysis'],
+    dataAiHint: 'social chart'
+  },
+  {
+    id: '9',
+    name: 'DeepFakeDetector Pro',
+    author: 'CyberSecSolutions',
+    description: 'A robust system that identifies manipulated images and videos with high accuracy to combat misinformation and digital fraud.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Cybersecurity', 'Deepfake Detection'],
+    dataAiHint: 'secure shield'
+  },
+  {
+    id: '10',
+    name: 'AgriOptimize AI Suite',
+    author: 'FarmTechInnovate',
+    description: 'Optimizes crop yields, predicts pest outbreaks, and manages resources efficiently in agriculture using IoT sensor data and AI.',
+    imageUrl: 'https://placehold.co/600x400.png',
+    hfUrl: 'https://huggingface.co/models',
+    tags: ['Agriculture AI', 'Precision Farming'],
+    dataAiHint: 'farm tractor'
+  }
 ];
 
 
@@ -185,7 +264,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool1',
     name: 'GST Calculator',
     description: 'Calculates the Goods and Services Tax (GST) amount for various tax slabs in India.',
-    weblink: 'https://www.gst.gov.in/gstcalculator/',
+    weblink: '/tools/gst-calculator', // Updated link
     tags: ['GST rate calculator', 'Tax calculator', 'Indian GST tool'],
     dataAiHint: 'calculator tax'
   },
@@ -193,7 +272,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool2',
     name: 'EMI Calculator',
     description: 'Calculates monthly EMI based on loan amount, interest rate, and tenure.',
-    weblink: '/tools/emi-calculator', // Updated link
+    weblink: '/tools/emi-calculator', 
     tags: ['Loan calculator', 'Interest calculator', 'Monthly EMI calculator'],
     dataAiHint: 'calculator loan'
   },
@@ -238,4 +317,5 @@ export const placeholderQuickTools: QuickTool[] = [
     dataAiHint: 'qr code'
   }
 ];
+
 
