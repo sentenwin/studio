@@ -1,5 +1,5 @@
 
-"use client"; 
+"use client";
 import type { FC } from 'react';
 import Link from 'next/link';
 import Logo from './logo';
@@ -11,7 +11,7 @@ import React from 'react';
 
 const navLinks = [
   { href: '#features', label: 'Features' },
-  { href: '#mission', label: 'Mission' },
+  { href: '#about', label: 'About us' }, // Changed from Mission and #mission
   { href: '/community', label: 'Community' },
   { href: '#featured-projects', label: 'Projects' },
   { href: '#featured-datasets', label: 'Datasets' },
@@ -54,7 +54,7 @@ const Header: FC = () => {
                   <SheetHeader className="mb-4 border-b pb-4">
                     <SheetTitle>OpenMaduraAI</SheetTitle>
                   </SheetHeader>
-                  
+
                   <nav className="flex flex-col space-y-4 mt-4">
                     {navLinks.map((link) => (
                       <Link
@@ -80,10 +80,10 @@ const Header: FC = () => {
           <div className="md:hidden flex-1 flex justify-center">
             <Logo />
           </div>
-          
+
 
           {/* Right Section: Desktop Navigation / Mobile Spacer */}
-          <div className="flex items-center"> 
+          <div className="flex items-center">
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6 md:ml-6">
               {navLinks.map((link) => (
@@ -100,7 +100,7 @@ const Header: FC = () => {
               </Link>
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo on mobile by occupying the rightmost cell) */}
-            <div className="md:hidden w-10 h-10"> 
+            <div className="md:hidden w-10 h-10">
             </div>
           </div>
         </div>
