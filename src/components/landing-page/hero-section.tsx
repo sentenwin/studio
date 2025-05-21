@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Search, ExternalLink, Loader2 } from 'lucide-react';
 import { searchQuickTools, type SearchQuickToolsOutput } from '@/ai/flows/search-tools-flow';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { JoinCommunityDialog } from './join-community-dialog'; // Import JoinCommunityDialog
 
 
 const HeroSection: FC = () => {
@@ -85,10 +85,10 @@ const HeroSection: FC = () => {
                 <ul className="space-y-2">
                   {searchResults.map((tool) => (
                     <li key={tool.id} className="border p-3 rounded-md bg-card hover:shadow-md transition-shadow">
-                      <Link href={tool.weblink} target="_blank" rel="noopener noreferrer" className="group">
+                      <Link href={tool.weblink} target={tool.weblink.startsWith('http') ? '_blank' : '_self'} rel="noopener noreferrer" className="group">
                         <div className="flex justify-between items-center">
                           <span className="font-medium text-primary group-hover:underline">{tool.name}</span>
-                          <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent" />
+                           {tool.weblink.startsWith('http') && <ExternalLink className="h-4 w-4 text-muted-foreground group-hover:text-accent" /> }
                         </div>
                         <p className="text-xs text-muted-foreground line-clamp-2">{tool.description}</p>
                       </Link>
@@ -102,12 +102,12 @@ const HeroSection: FC = () => {
                  <p className="text-sm text-muted-foreground mt-2">No tools found for &quot;{searchQuery}&quot;.</p>
             )}
 
-
             <Link href="/quick-open-tools" passHref>
               <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300 mt-2">
                 Browse All Quick Tools
               </Button>
             </Link>
+            <JoinCommunityDialog />
           </div>
         </div>
       </div>
@@ -116,3 +116,4 @@ const HeroSection: FC = () => {
 };
 
 export default HeroSection;
+
