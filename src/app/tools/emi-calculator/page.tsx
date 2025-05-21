@@ -153,7 +153,7 @@ export default function EmiCalculatorPage() {
             <CardContent className="space-y-8 pt-2">
               {/* Loan Amount */}
               <div className="space-y-2">
-                <Label htmlFor="loanAmount" className="text-base font-medium">Personal Loan Amount</Label>
+                <Label htmlFor="loanAmount" className="text-base font-medium">Loan Amount</Label>
                 <div className="flex items-center rounded-md border border-input focus-within:ring-2 focus-within:ring-ring">
                   <Input
                     id="loanAmount"
