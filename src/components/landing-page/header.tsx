@@ -14,6 +14,7 @@ const navLinks = [
   { href: '/community', label: 'Community' },
   { href: '#featured-projects', label: 'Projects' },
   { href: '#featured-datasets', label: 'Datasets' },
+  { href: '/quick-open-tools', label: 'Quick Tools'}, // Added Quick Tools link
   { href: '#join-us', label: 'Join Us' },
 ];
 

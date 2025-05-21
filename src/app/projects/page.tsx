@@ -7,8 +7,8 @@ import ModelCard from '@/components/projects/model-card';
 import { placeholderProjects } from '@/lib/placeholder-data';
 
 export const metadata: Metadata = {
-  title: 'Explore Projects - Open MaduraAI',
-  description: 'Discover a wide range of AI models and projects from the Open MaduraAI community and beyond.',
+  title: 'Explore Projects - Firebase Studio',
+  description: 'Discover a wide range of AI models and projects from the Firebase Studio community and beyond.',
 };
 
 export default function ProjectsPage() {
@@ -52,6 +52,7 @@ export default function ProjectsPage() {
       <footer className="py-8 bg-secondary/30 border-t border-border text-center">
         <p className="text-sm text-muted-foreground">
           &copy; {new Date().getFullYear()} Open MaduraAI. All rights reserved.
+ Open MaduraAI. All rights reserved.
         </p>
       </footer>
     </div>

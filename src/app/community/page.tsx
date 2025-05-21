@@ -6,7 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import CommunityCard, { type CommunityInfo } from '@/components/community/community-card';
 
 export const metadata: Metadata = {
-  title: 'Explore Developer Communities - Open MaduraAI',
+  title: 'Explore Developer Communities - Firebase Studio',
   description: 'Discover developer communities in Madurai. Connect, learn, and grow with local tech groups.',
 };
 
