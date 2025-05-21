@@ -11,7 +11,7 @@ import React from 'react';
 
 const navLinks = [
   { href: '#features', label: 'Features' },
-  { href: '#about', label: 'About us' }, // Changed from Mission and #mission
+  { href: '#about', label: 'About us' },
   { href: '/community', label: 'Community' },
   { href: '#featured-projects', label: 'Projects' },
   { href: '#featured-datasets', label: 'Datasets' },
@@ -95,9 +95,6 @@ const Header: FC = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/#join-us" passHref>
-                <Button>Get Started</Button>
-              </Link>
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo on mobile by occupying the rightmost cell) */}
             <div className="md:hidden w-10 h-10">
