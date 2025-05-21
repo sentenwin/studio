@@ -1,3 +1,4 @@
+
 import type { FC } from 'react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -29,7 +30,7 @@ const HeroSection: FC = () => {
             </div>
 
             {/* Quick Open Button */}
-            <Link href="#join-us" passHref>
+            <Link href="/quick-open-tools" passHref>
               <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
                 Quick Open
               </Button>

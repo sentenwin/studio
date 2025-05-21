@@ -31,86 +31,7 @@ export const placeholderProjects: ProjectModel[] = [
     tags: ['Computer Vision', 'Object Detection'],
     dataAiHint: 'robotic eye'
   },
-  {
-    id: '3',
-    name: 'AudioSynth AI',
-    author: 'MusicTechLabs',
-    description: 'Generates unique musical pieces and realistic soundscapes based on textual prompts or existing melodies, with fine-grained control.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Audio Generation', 'Music AI'],
-    dataAiHint: 'sound waves'
-  },
-  {
-    id: '4',
-    name: 'CodeHelper GPT',
-    author: 'DevToolsInc',
-    description: 'An AI pair programmer that assists with code completion, debugging complex issues, and generating documentation in multiple languages.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Code Generation', 'AI Assistant'],
-    dataAiHint: 'code screen'
-  },
-  {
-    id: '5',
-    name: 'MediScan AI',
-    author: 'HealthInnovators',
-    description: 'Analyzes medical images (X-rays, MRIs) to assist healthcare professionals in early-stage disease detection and diagnosis.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Healthcare AI', 'Medical Imaging'],
-    dataAiHint: 'medical scan'
-  },
-  {
-    id: '6',
-    name: 'EcoForecaster Plus',
-    author: 'ClimateResearchOrg',
-    description: 'Predicts environmental changes, pollution levels, and long-term weather patterns using complex climate data and satellite imagery.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Climate AI', 'Forecasting', 'Environment'],
-    dataAiHint: 'earth globe'
-  },
-  {
-    id: '7',
-    name: 'RoboNavigator X',
-    author: 'AutonomousSystemsCo',
-    description: 'Advanced real-time pathfinding and navigation AI for autonomous robots and drones in complex, dynamic environments.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Robotics', 'Autonomous Navigation'],
-    dataAiHint: 'robot path'
-  },
-  {
-    id: '8',
-    name: 'SentimentAnalyzer Max',
-    author: 'MarketInsightsLLC',
-    description: 'Deeply analyzes text data from social media, news, and customer reviews to determine nuanced public sentiment and trends.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['NLP', 'Sentiment Analysis'],
-    dataAiHint: 'social media'
-  },
-  {
-    id: '9',
-    name: 'DeepFakeDetector Pro',
-    author: 'CyberSecSolutions',
-    description: 'A robust system that identifies manipulated images and videos with high accuracy to combat misinformation and digital fraud.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Cybersecurity', 'Deepfake Detection'],
-    dataAiHint: 'security shield'
-  },
-  {
-    id: '10',
-    name: 'AgriOptimize AI Suite',
-    author: 'FarmTechInnovate',
-    description: 'Optimizes crop yields, predicts pest outbreaks, and manages resources efficiently in agriculture using IoT sensor data and AI.',
-    imageUrl: 'https://placehold.co/600x400.png',
-    hfUrl: 'https://huggingface.co/models',
-    tags: ['Agriculture AI', 'Precision Farming'],
-    dataAiHint: 'farm field'
-  },
+  // Only showing 2 as per previous request for featured section, full list would be here.
 ];
 
 
@@ -247,5 +168,73 @@ export const placeholderDatasets: Dataset[] = [
     dataAiHint: 'wine glass',
     size: '240 KB',
     updated: '7 years ago'
+  }
+];
+
+export interface QuickTool {
+  id: string;
+  name: string;
+  description: string;
+  weblink: string;
+  tags: string[]; // Alternative Name
+  dataAiHint?: string;
+}
+
+export const placeholderQuickTools: QuickTool[] = [
+  {
+    id: 'tool1',
+    name: 'GST Calculator',
+    description: 'Calculates the Goods and Services Tax (GST) amount for various tax slabs in India.',
+    weblink: 'https://www.gst.gov.in/gstcalculator/',
+    tags: ['GST rate calculator', 'Tax calculator', 'Indian GST tool'],
+    dataAiHint: 'calculator tax'
+  },
+  {
+    id: 'tool2',
+    name: 'EMI Calculator',
+    description: 'Calculates monthly EMI based on loan amount, interest rate, and tenure.',
+    weblink: 'https://emicalculator.net/',
+    tags: ['Loan calculator', 'Interest calculator', 'Monthly EMI calculator'],
+    dataAiHint: 'calculator loan'
+  },
+  {
+    id: 'tool3',
+    name: 'Currency Converter',
+    description: 'Converts currency values using real-time exchange rates between global currencies.',
+    weblink: 'https://www.xe.com/currencyconverter/',
+    tags: ['Forex converter', 'Money exchange rate', 'Currency exchange tool'],
+    dataAiHint: 'currency exchange'
+  },
+  {
+    id: 'tool4',
+    name: 'Image Converter',
+    description: 'Converts image files between formats like JPG, PNG, GIF, BMP, and WEBP.',
+    weblink: 'https://convertio.co/image-converter/',
+    tags: ['PNG to JPG', 'Image format change', 'Online image converter'],
+    dataAiHint: 'image file'
+  },
+  {
+    id: 'tool5',
+    name: 'File Converter',
+    description: 'Converts files across various formats including documents, videos, audio, and more.',
+    weblink: 'https://www.zamzar.com/',
+    tags: ['Online converter', 'Format changer', 'Document converter'],
+    dataAiHint: 'file document'
+  },
+  {
+    id: 'tool6',
+    name: 'Bank IFSC Finder',
+    description: 'Finds IFSC, MICR codes, and other details of Indian bank branches.',
+    weblink: 'https://www.bankbazaar.com/ifsc-code.html',
+    tags: ['IFSC search', 'Bank code finder', 'Bank branch locator'],
+    dataAiHint: 'bank building'
+  },
+  {
+    id: 'tool7',
+    name: 'QR Code Generator',
+    description: 'Generates QR codes for URLs, contact info, text, WiFi passwords, and more.',
+    weblink: 'https://www.qr-code-generator.com/',
+    tags: ['QR creator', 'Barcode generator', 'QR code maker'],
+    dataAiHint: 'qr code'
   }
 ];
