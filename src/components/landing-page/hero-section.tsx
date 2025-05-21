@@ -14,12 +14,8 @@ const HeroSection: FC = () => {
             <span className="text-accent">Collaboration</span>
           </h1>
           
-          <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
-            <Link href="#join-us" passHref>
-              <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
-                Quick Open
-              </Button>
-            </Link>
+          {/* Flex container for search bar and button */}
+          <div className="flex flex-col items-center gap-4">
             {/* Search Bar */}
             <div className="relative flex items-center w-full max-w-xs sm:max-w-sm">
               <Input
@@ -31,6 +27,13 @@ const HeroSection: FC = () => {
                 <Search className="h-5 w-5 text-muted-foreground" />
               </div>
             </div>
+
+            {/* Quick Open Button */}
+            <Link href="#join-us" passHref>
+              <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
+                Quick Open
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
