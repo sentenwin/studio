@@ -193,7 +193,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool2',
     name: 'EMI Calculator',
     description: 'Calculates monthly EMI based on loan amount, interest rate, and tenure.',
-    weblink: 'https://emicalculator.net/',
+    weblink: '/tools/emi-calculator', // Updated link
     tags: ['Loan calculator', 'Interest calculator', 'Monthly EMI calculator'],
     dataAiHint: 'calculator loan'
   },
@@ -238,3 +238,4 @@ export const placeholderQuickTools: QuickTool[] = [
     dataAiHint: 'qr code'
   }
 ];
+
