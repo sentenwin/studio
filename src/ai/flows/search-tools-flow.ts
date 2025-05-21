@@ -46,8 +46,13 @@ const searchQuickToolsFlow = ai.defineFlow(
   async (input) => {
     const { query } = input;
     const lowerCaseQuery = query.toLowerCase();
+    console.log('[searchQuickToolsFlow] Received query:', query, 'Lowercase:', lowerCaseQuery);
+    console.log('[searchQuickToolsFlow] Searching in tools count:', placeholderQuickTools.length);
+    // console.log('[searchQuickToolsFlow] Tools data:', JSON.stringify(placeholderQuickTools.map(t => t.name)));
+
 
     if (!query.trim()) {
+      console.log('[searchQuickToolsFlow] Query is blank, returning empty.');
       return []; // Return empty if query is blank
     }
 
@@ -58,9 +63,14 @@ const searchQuickToolsFlow = ai.defineFlow(
       tool.description.toLowerCase().includes(lowerCaseQuery) ||
       tool.tags.some(tag => tag.toLowerCase().includes(lowerCaseQuery))
     );
-
-    // Return top 3 matches for this simplified version
-    return results.slice(0, 3);
+    console.log('[searchQuickToolsFlow] Found results count:', results.length);
+    if (results.length > 0) {
+      // console.log('[searchQuickToolsFlow] Matched tools:', results.map(r => r.name));
+    }
+    
+    const slicedResults = results.slice(0, 3);
+    console.log('[searchQuickToolsFlow] Returning sliced results count:', slicedResults.length);
+    return slicedResults;
   }
 );
 
