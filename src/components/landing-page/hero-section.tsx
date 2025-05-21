@@ -14,10 +14,10 @@ const HeroSection: FC = () => {
             <span className="text-accent">Collaboration</span>
           </h1>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
             <Link href="#join-us" passHref>
               <Button size="lg" className="shadow-lg hover:shadow-xl transform transition-shadow duration-300">
-                Get Started
+                Quick Open
               </Button>
             </Link>
             {/* Search Bar */}
