@@ -53,18 +53,32 @@ const Header: FC = () => {
                   <SheetHeader className="mb-4 border-b pb-4">
                     <SheetTitle>OpenMaduraAI</SheetTitle>
                   </SheetHeader>
-
                   <nav className="flex flex-col space-y-4 mt-4">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                      if (link.label === 'Join Us') {
+                        return (
+                          <Button
+                            asChild
+                            key={link.href}
+                            className="w-full"
+                            variant="default"
+                            onClick={() => setMobileMenuOpen(false)}
+                          >
+                            <Link href={link.href}>{link.label}</Link>
+                          </Button>
+                        );
+                      }
+                      return (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium"
+                        >
+                          {link.label}
+                        </Link>
+                      );
+                    })}
                   </nav>
                 </SheetContent>
               </Sheet>
@@ -80,20 +94,28 @@ const Header: FC = () => {
             <Logo />
           </div>
 
-
           {/* Right Section: Desktop Navigation / Mobile Spacer */}
           <div className="flex items-center">
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6 md:ml-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-foreground/80 hover:text-primary transition-colors font-medium"
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <nav className="hidden md:flex items-center space-x-4 md:ml-6"> {/* Reduced space-x for button */}
+              {navLinks.map((link) => {
+                if (link.label === 'Join Us') {
+                  return (
+                    <Button asChild key={link.href} size="sm" variant="default">
+                      <Link href={link.href}>{link.label}</Link>
+                    </Button>
+                  );
+                }
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-foreground/80 hover:text-primary transition-colors font-medium"
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
             {/* Mobile Spacer (to balance the menu button and center the logo on mobile by occupying the rightmost cell) */}
             <div className="md:hidden w-10 h-10">
