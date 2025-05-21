@@ -264,7 +264,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool1',
     name: 'GST Calculator',
     description: 'Calculates the Goods and Services Tax (GST) amount for various tax slabs in India.',
-    weblink: '/tools/gst-calculator', // Updated link
+    weblink: '/tools/gst-calculator',
     tags: ['GST rate calculator', 'Tax calculator', 'Indian GST tool'],
     dataAiHint: 'calculator tax'
   },
@@ -272,7 +272,7 @@ export const placeholderQuickTools: QuickTool[] = [
     id: 'tool2',
     name: 'EMI Calculator',
     description: 'Calculates monthly EMI based on loan amount, interest rate, and tenure.',
-    weblink: '/tools/emi-calculator', 
+    weblink: '/tools/emi-calculator',
     tags: ['Loan calculator', 'Interest calculator', 'Monthly EMI calculator'],
     dataAiHint: 'calculator loan'
   },
@@ -315,7 +315,61 @@ export const placeholderQuickTools: QuickTool[] = [
     weblink: 'https://www.qr-code-generator.com/',
     tags: ['QR creator', 'Barcode generator', 'QR code maker'],
     dataAiHint: 'qr code'
+  },
+  {
+    id: 'tool8',
+    name: 'Age Calculator',
+    description: 'Calculates age in years, months, and days from date of birth.',
+    weblink: 'https://www.calculator.net/age-calculator.html',
+    tags: ['DOB to age', 'Birthday calculator', 'Life age calculator'],
+    dataAiHint: 'calendar birthday'
+  },
+  {
+    id: 'tool9',
+    name: 'Unit Converter',
+    description: 'Converts between units like length, weight, temperature, speed, volume, etc.',
+    weblink: 'https://www.unitconverters.net',
+    tags: ['Metric converter', 'Measurement converter', 'Physics unit tool'],
+    dataAiHint: 'ruler scale'
+  },
+  {
+    id: 'tool10',
+    name: 'PDF Editor',
+    description: 'Allows you to edit, annotate, merge, split, and convert PDFs online.',
+    weblink: 'https://www.ilovepdf.com',
+    tags: ['PDF merger', 'PDF splitter', 'PDF tools'],
+    dataAiHint: 'pdf document'
+  },
+  {
+    id: 'tool11',
+    name: 'Text Case Converter',
+    description: 'Converts text to UPPERCASE, lowercase, Title Case, Sentence case, etc.',
+    weblink: 'https://convertcase.net',
+    tags: ['Case formatter', 'Text capitalization tool', 'Text cleaner'],
+    dataAiHint: 'text style'
+  },
+  {
+    id: 'tool12',
+    name: 'Word Counter',
+    description: 'Counts the number of words, characters, sentences, and paragraphs in text.',
+    weblink: 'https://wordcounter.net',
+    tags: ['Character count', 'Text length checker', 'Content analyzer'],
+    dataAiHint: 'text document'
+  },
+  {
+    id: 'tool13',
+    name: 'Password Generator',
+    description: 'Creates strong, random passwords with customizable length and characters.',
+    weblink: 'https://www.lastpass.com/password-generator',
+    tags: ['Random password tool', 'Secure password maker', 'Key generator'],
+    dataAiHint: 'password lock'
+  },
+  {
+    id: 'tool14',
+    name: 'Screen Recorder (Online)',
+    description: 'Records your screen directly from browser without installing software.',
+    weblink: 'https://screenapp.io',
+    tags: ['Online screen capture', 'Browser recorder', 'Screen video tool'],
+    dataAiHint: 'screen record'
   }
 ];
-
-
