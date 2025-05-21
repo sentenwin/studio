@@ -20,7 +20,7 @@ const Footer: FC = () => {
           <div>
             <h3 className="text-lg font-semibold text-primary mb-3">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/#features" className="text-sm text-muted-foreground hover:text-primary transition-colors">Features</Link></li>
+              <li><Link href="/#about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About us</Link></li>
               <li><Link href="/#mission" className="text-sm text-muted-foreground hover:text-primary transition-colors">Our Mission</Link></li>
               <li><Link href="/projects" className="text-sm text-muted-foreground hover:text-primary transition-colors">Projects</Link></li>
               <li><Link href="/datasets" className="text-sm text-muted-foreground hover:text-primary transition-colors">Datasets</Link></li>
