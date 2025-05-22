@@ -39,7 +39,7 @@ const sendWelcomeEmailFlow = ai.defineFlow(
     outputSchema: WelcomeEmailOutputSchema,
   },
   async (input) => {
-    const { name, email } = input;
+    const { name, email } = input; // 'name' here is the user's name from the form submission
 
     const zeptoMailApiToken = process.env.ZEPTOMAIL_API_TOKEN;
     const zeptoMailApiUrl = "api.zeptomail.in/v1.1/email/template"; // As per documentation
@@ -60,27 +60,25 @@ const sendWelcomeEmailFlow = ai.defineFlow(
         mail_template_key: mailTemplateKey,
         from: {
           address: "noreply@openmadurai.org",
-          name: "Open MaduraAI" // Changed from "noreply"
+          name: "Open MaduraAI"
         },
         to: [
           {
             email_address: {
               address: email,
-              name: name
+              name: name // User's name for the 'To' field in the email header
             }
           }
         ],
         merge_info: {
-          "username": name,
-          "product name": "Open MaduraAI", // Consistent naming
+          "username": name, // User's submitted name is used for the 'username' merge tag
+          "product name": "Open MaduraAI",
           "product": "https://openmadurai.org",
           "support id": "hello@openmadurai.org",
           "brand": "OpenMaduraAI"
         }
       });
       
-      // ZeptoMail SDK's sendMailWithTemplate returns an array of results or a single result object.
-      // Assuming a single email is sent, we check the first element if it's an array.
       const result = Array.isArray(response) ? response[0] : response;
 
       if (result && result.messageId) {
@@ -90,7 +88,6 @@ const sendWelcomeEmailFlow = ai.defineFlow(
           messageId: result.messageId,
         };
       } else {
-        // Handle cases where the response might not be as expected or indicates failure
         console.error(`ZeptoMail API response indicates failure or missing messageId for ${email}:`, response);
         const errorMessage = result?.data?.message || 'ZeptoMail API error: Unknown issue or malformed response.';
         return {
@@ -101,7 +98,6 @@ const sendWelcomeEmailFlow = ai.defineFlow(
 
     } catch (error: any) {
       console.error(`Failed to send welcome email to ${email}:`, error.message, error.details || error);
-      // Try to extract a more specific error message from ZeptoMail's error structure if available
       const zeptoErrorDetails = error.details?.data?.message || error.message || 'An unexpected error occurred during email sending.';
       return {
         status: 'failed',
