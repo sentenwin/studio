@@ -56,7 +56,7 @@ const sendWelcomeEmailFlow = ai.defineFlow(
     try {
       const client = new SendMailClient({ url: zeptoMailApiUrl, token: zeptoMailApiToken });
 
-      const response = await client.sendMailWithTemplate({
+      const apiResponse = await client.sendMailWithTemplate({
         mail_template_key: mailTemplateKey,
         from: {
           address: "noreply@openmadurai.org",
@@ -79,30 +79,57 @@ const sendWelcomeEmailFlow = ai.defineFlow(
         }
       });
       
-      const result = Array.isArray(response) ? response[0] : response;
+      // Check based on ZeptoMail Node SDK's documented response for sendMailWithTemplate
+      if (
+        apiResponse &&
+        apiResponse.data &&
+        Array.isArray(apiResponse.data) &&
+        apiResponse.data.length > 0 &&
+        apiResponse.data[0].code &&
+        String(apiResponse.data[0].code).startsWith('2') // e.g., "250 OK" for success
+      ) {
+        const firstResult = apiResponse.data[0];
+        // Attempt to parse messageId from the message string (as per SDK example)
+        const messageIdMatch = typeof firstResult.message === 'string' ? firstResult.message.match(/Message-Id:<([^>]+)>/) : null;
+        const messageId = messageIdMatch ? messageIdMatch[1] : undefined;
 
-      if (result && result.messageId) {
-        console.log(`Welcome email sent to ${email}, Message ID: ${result.messageId}`);
+        console.log(`Welcome email sent to ${email}, SDK Response Code: ${firstResult.code}, Parsed Message ID: ${messageId || 'N/A'}`);
         return {
           status: 'sent',
-          messageId: result.messageId,
+          messageId: messageId,
         };
       } else {
-        console.error(`ZeptoMail API response indicates failure or missing messageId for ${email}:`, response);
-        const errorMessage = result?.data?.message || 'ZeptoMail API error: Unknown issue or malformed response.';
+        // This block handles actual API errors returned by ZeptoMail or unexpected response structures.
+        let errorMsg = 'ZeptoMail API error: Unknown issue or malformed response.';
+        if (apiResponse && apiResponse.data && Array.isArray(apiResponse.data) && apiResponse.data.length > 0) {
+          const firstResult = apiResponse.data[0];
+          errorMsg = `ZeptoMail API Error: ${firstResult.message || 'No message'} (Code: ${firstResult.code || 'N/A'})`;
+        } else if (apiResponse && (apiResponse as any).message) {
+          // Fallback for other error structures (e.g. if API returns a top-level message field for errors)
+          errorMsg = `ZeptoMail API Error: ${(apiResponse as any).message}`;
+        }
+        console.error(`ZeptoMail API response indicates failure or unexpected structure for ${email}:`, apiResponse);
         return {
           status: 'failed',
-          error: errorMessage,
+          error: errorMsg,
         };
       }
 
     } catch (error: any) {
-      console.error(`Failed to send welcome email to ${email}:`, error.message, error.details || error);
-      const zeptoErrorDetails = error.details?.data?.message || error.message || 'An unexpected error occurred during email sending.';
+      console.error(`Failed to send welcome email to ${email} (exception caught):`, error.message, error.details || error.response || error);
+      const zeptoErrorResponseMessage = error.details?.data?.message || error.details?.message || error.message;
+      const zeptoErrorCode = error.details?.data?.code || error.details?.code;
+      let detailedError = 'An unexpected error occurred during email sending.';
+      if (zeptoErrorResponseMessage) {
+          detailedError = zeptoErrorCode ? `${zeptoErrorResponseMessage} (Code: ${zeptoErrorCode})` : zeptoErrorResponseMessage;
+      } else if (error.message) {
+          detailedError = error.message;
+      }
       return {
         status: 'failed',
-        error: `Email sending failed: ${zeptoErrorDetails}`,
+        error: `Email sending failed: ${detailedError}`,
       };
     }
   }
 );
+
