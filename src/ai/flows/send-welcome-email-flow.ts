@@ -42,7 +42,9 @@ const sendWelcomeEmailFlow = ai.defineFlow(
     const { name, email } = input; // 'name' here is the user's name from the form submission
 
     const zeptoMailApiToken = process.env.ZEPTOMAIL_API_TOKEN;
-    const zeptoMailApiUrl = "api.zeptomail.in/v1.1/email/template"; // As per documentation
+    // Corrected: Use the base API URL for the India data center.
+    // The SDK will append specific endpoints like '/email/template'.
+    const zeptoMailApiUrl = "https://api.zeptomail.in/v1.1/"; 
     const mailTemplateKey = "2518b.342d67e4b2e91d02.k1.1ef09870-36b5-11f0-b421-8e9a6c33ddc2.196f5d68377"; // Your template key
 
     if (!zeptoMailApiToken) {
