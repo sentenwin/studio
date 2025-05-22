@@ -30,12 +30,17 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from '@/lib/supabaseClient';
-import { sendWelcomeNotifications } from "@/ai/flows/send-welcome-notifications-flow"; // Import the new flow
+import { sendWelcomeNotifications } from "@/ai/flows/send-welcome-notifications-flow";
+import { sendWelcomeEmail } from "@/ai/flows/send-welcome-email-flow"; // Import the new email flow
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }).refine(val => /^\+?[1-9]\d{1,14}$/.test(val) || val === '', { message: "Please enter a valid phone number in E.164 format (e.g., +1234567890) or leave empty."}).optional().or(z.literal('')),
+  phone: z.string()
+    .refine(val => val === '' || /^\+?[1-9]\d{1,14}$/.test(val), { 
+      message: "Please enter a valid phone number in E.164 format (e.g., +1234567890) or leave empty."
+    })
+    .optional().or(z.literal('')),
   githubLink: z.string().url({ message: "Please enter a valid URL (e.g., https://github.com/username)." }).optional().or(z.literal('')),
   gender: z.enum(["male", "female", "prefer_not_to_say"]).optional(),
 });
@@ -100,7 +105,7 @@ export function JoinCommunityDialog() {
             },
           ])
           .select()
-          .single(); // Assuming you want the newly inserted user's data
+          .single(); 
 
         if (insertError) {
           console.error('Supabase insert error:', insertError);
@@ -117,12 +122,12 @@ export function JoinCommunityDialog() {
           });
           
           // Send Twilio notifications if phone number is provided
-          if (values.phone && newUserData) { // Check if newUserData is not null
+          if (values.phone && newUserData) { 
+            toast({
+              title: "Sending Welcome Notifications...",
+              description: "Please wait a moment.",
+            });
             try {
-              toast({
-                title: "Sending Welcome Notifications...",
-                description: "Please wait a moment.",
-              });
               const notificationResult = await sendWelcomeNotifications({ name: values.name, phone: values.phone });
               console.log('Twilio Notification Result:', notificationResult);
               if (notificationResult.error) {
@@ -148,6 +153,25 @@ export function JoinCommunityDialog() {
               });
             }
           }
+
+          // Send Welcome Email via ZeptoMail
+          if (newUserData) { // Ensure user was created
+            toast({
+              title: "Sending Welcome Email...",
+              description: "Please wait a moment.",
+            });
+            try {
+              const emailResult = await sendWelcomeEmail({ name: values.name, email: values.email });
+              if (emailResult.status === 'sent') {
+                toast({ title: "Welcome Email Sent!", description: `Message ID: ${emailResult.messageId || 'N/A'}. Check your inbox.` });
+              } else {
+                toast({ title: "Email Sending Issue", description: emailResult.error || "Could not send welcome email.", variant: "destructive", duration: 7000 });
+              }
+            } catch (emailError: any) {
+              console.error('Error sending welcome email via flow:', emailError);
+              toast({ title: "Email Sending Error", description: emailError.message || "Failed to send welcome email.", variant: "destructive" });
+            }
+          }
           
           form.reset();
           setIsOpen(false);
@@ -169,9 +193,9 @@ export function JoinCommunityDialog() {
     <Dialog
         open={isOpen}
         onOpenChange={(openState) => {
-            if (isSubmitting) return; // Prevent closing while submitting
+            if (isSubmitting) return; 
             setIsOpen(openState);
-            if (!openState) { // Reset form if dialog is closed
+            if (!openState) { 
                 form.reset();
             }
         }}
@@ -225,9 +249,9 @@ export function JoinCommunityDialog() {
               name="phone"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Phone Number (e.g., +1234567890, Optional)</FormLabel>
+                  <FormLabel>Phone Number (Optional)</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="Your contact number" {...field} disabled={isSubmitting}/>
+                    <Input type="tel" placeholder="e.g. +1234567890" {...field} disabled={isSubmitting}/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
